@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>НУТРИЛОГИЯ — платформа спортивных нутрициологов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#E9ECF5;
+  --bg:#F6F7FB; --surface:#FFFFFF; --surface2:#EEF0F7;
+  --ink:#1C1F2A; --muted:#5A6072; --line:#E1E4EF;
+  --leaf:#2F6BFF; --leaf-d:#1F4FD6; --leaf-soft:#E8EFFF;
+  --tomato:#E5484D; --tomato-press:#C93A3F;
+  --cobalt:#7B5CFF; --cobalt-soft:#F0EBFF;
+  --gold:#6A4DF0; --gold-soft:#F0EBFF;
+  --grad:linear-gradient(120deg,#2F6BFF 0%,#5A63FF 50%,#7B5CFF 100%);
+  --glow:0 0 0 1px rgba(47,107,255,.2),0 8px 26px -8px rgba(47,107,255,.5);
+  --shadow:0 1px 2px rgba(28,31,42,.04),0 12px 30px -16px rgba(40,50,110,.28);
+  --display:'Manrope','Segoe UI',Roboto,Arial,sans-serif;
+  --body:'Manrope','Segoe UI',Roboto,Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --desk:#0B0D14; --bg:#10131C; --surface:#171B26; --surface2:#1D2230;
+    --ink:#EDEFF6; --muted:#9AA1B6; --line:#2A3042;
+    --leaf:#5B8BFF; --leaf-d:#7FA4FF; --leaf-soft:#1A2548;
+    --tomato:#FF6B6F; --tomato-press:#F05458;
+    --cobalt:#9B84FF; --cobalt-soft:#261F4A;
+    --gold:#A792FF; --gold-soft:#261F4A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 26px -14px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --desk:#0B0D14; --bg:#10131C; --surface:#171B26; --surface2:#1D2230;
+    --ink:#EDEFF6; --muted:#9AA1B6; --line:#2A3042;
+    --leaf:#5B8BFF; --leaf-d:#7FA4FF; --leaf-soft:#1A2548;
+    --tomato:#FF6B6F; --tomato-press:#F05458;
+    --cobalt:#9B84FF; --cobalt-soft:#261F4A;
+    --gold:#A792FF; --gold-soft:#261F4A;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 26px -14px rgba(0,0,0,.6);
+}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:var(--desk);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer;padding:0}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.app{max-width:440px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative}
+@media (min-width:600px){.app{box-shadow:0 0 0 1px var(--line),0 30px 80px -40px rgba(19,36,27,.4)}}
+main{padding:14px 18px calc(104px + env(safe-area-inset-bottom,0px))}
+.sub-mode main{padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+
+h1,h2,h3{font-family:var(--display);font-weight:800;margin:0;letter-spacing:.005em}
+h1{font-size:34px;line-height:1.02}
+h2{font-size:24px;line-height:1.1}
+h3{font-size:20px;line-height:1.15;font-weight:700}
+.muted{color:var(--muted)}
+.num{font-family:var(--display);font-weight:800}
+.sect{margin-top:26px}
+.sect-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:10px}
+.sect-head .muted{font-size:14px}
+.ic{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card{background:var(--surface);border-radius:18px;box-shadow:var(--shadow)}
+
+/* header */
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-top:4px}
+.top small{display:block;color:var(--muted);font-size:14px;margin-bottom:2px}
+.xp{display:inline-flex;align-items:center;gap:6px;background:var(--gold-soft);border-radius:999px;padding:6px 12px;font-weight:700;font-size:15px;white-space:nowrap}
+.xp .ic{width:17px;height:17px;color:var(--gold)}
+
+/* route track (signature) */
+.route{margin-top:18px;background:var(--ink);color:#fff;border-radius:24px;padding:18px 16px 16px;position:relative;overflow:hidden}
+:root[data-theme="dark"] .route{background:#0B130F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .route{background:#0B130F}}
+.route .rt{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+.route .big{font-family:var(--display);font-weight:800;font-size:48px;line-height:.9}
+.route .big span{font-size:22px;opacity:.6;font-weight:700}
+.route .lbl{font-size:14px;opacity:.7}
+.route svg{display:block;width:100%;height:auto;margin-top:14px}
+.route .foot{display:flex;justify-content:space-between;font-size:13px;opacity:.75;margin-top:6px}
+
+/* next lesson */
+.next{padding:16px}
+.next .tch{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:14px;color:var(--muted)}
+.next .btn{margin-top:14px}
+.ava{border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;flex:none;width:36px;height:36px;font-size:13px}
+.dl{display:flex;gap:12px;align-items:center;padding:14px 16px;margin-top:10px;background:var(--cobalt-soft);border-radius:18px}
+.dl .ic{color:var(--cobalt)}
+.dl b{display:block;font-size:15px}
+.dl small{color:var(--muted);font-size:14px}
+.dl .days{margin-left:auto;text-align:right;font-family:var(--display);font-weight:800;font-size:26px;color:var(--cobalt);line-height:1}
+.dl .days small{display:block;font-family:var(--body);font-weight:500;font-size:12px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:13px 18px;font-weight:700;font-size:16px;transition:background .15s,transform .1s}
+.btn:active{transform:scale(.98)}
+.btn-main{background:var(--tomato);color:#fff}
+.btn-main:hover{background:var(--tomato-press)}
+.btn-main[disabled]{background:var(--line);color:var(--muted);cursor:not-allowed}
+.btn-ghost{background:var(--surface);border:1.5px solid var(--line)}
+.btn-soft{background:var(--leaf-soft);color:var(--leaf-d)}
+.btn-block{width:100%}
+.btn .ic{width:19px;height:19px}
+
+/* case of the day */
+.case{padding:16px}
+.case .q{font-weight:600;font-size:16px;margin:8px 0 12px}
+.opt{display:block;width:100%;text-align:left;border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;margin-bottom:8px;font-size:15px;background:var(--surface)}
+.opt.ok{border-color:var(--leaf);background:var(--leaf-soft)}
+.opt.bad{border-color:var(--tomato);opacity:.7}
+.opt[disabled]{cursor:default}
+.expl{font-size:14px;color:var(--muted);background:var(--surface2);border-radius:12px;padding:11px 13px;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:13px;font-weight:600}
+.chip .ic{width:14px;height:14px}
+.chip-gold{background:var(--gold-soft);color:var(--gold)}
+.chip-leaf{background:var(--leaf-soft);color:var(--leaf-d)}
+.chip-cobalt{background:var(--cobalt-soft);color:var(--cobalt)}
+.chip-mute{background:var(--surface2);color:var(--muted)}
+
+/* clients */
+.hscroll{display:flex;gap:10px;overflow-x:auto;margin:0 -18px;padding:2px 18px 8px;scroll-snap-type:x mandatory}
+.hscroll::-webkit-scrollbar{display:none}
+.client{flex:none;width:250px;scroll-snap-align:start;padding:14px;text-align:left;display:flex;flex-direction:column;gap:10px}
+.clients-grid .client{width:auto}
+.client .ch{display:flex;gap:12px;align-items:center}
+.client .sp{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+.client .ch b{display:block;font-size:16px;line-height:1.2}
+.client .ch small{color:var(--muted);font-size:13px}
+.season{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.season i{height:6px;border-radius:3px;background:var(--line)}
+.season i.on{background:var(--cobalt)}
+.season-l{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:-5px}
+.client.locked{opacity:.6}
+.client p{margin:0;font-size:14px;color:var(--muted)}
+.clients-grid{display:grid;gap:10px}
+
+/* program */
+.hours{padding:16px}
+.hours .row{display:flex;justify-content:space-between;align-items:baseline}
+.hbar{height:10px;border-radius:5px;background:var(--surface2);overflow:hidden;margin-top:10px;display:flex;gap:2px}
+.hbar i{display:block;height:100%}
+.mod{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;padding:13px 14px;margin-bottom:8px}
+.mod .no{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:19px;background:var(--surface2);color:var(--muted)}
+.mod.done .no{background:var(--leaf);color:#fff}
+.mod.cur{box-shadow:0 0 0 2px var(--cobalt),var(--shadow)}
+.mod.cur .no{background:var(--cobalt);color:#fff}
+.mod.lock{opacity:.62}
+.mod b{display:block;font-size:15px;line-height:1.25}
+.mod small{color:var(--muted);font-size:13px}
+.mod .rgt{text-align:right;font-size:13px;color:var(--muted);white-space:nowrap}
+.mod .rgt strong{display:block;font-family:var(--display);font-size:20px;color:var(--ink)}
+.mprog{height:4px;background:var(--line);border-radius:2px;margin-top:6px;overflow:hidden}
+.mprog i{display:block;height:100%;background:var(--cobalt)}
+
+/* teachers */
+.tch-card{padding:16px;display:grid;grid-template-columns:64px 1fr;gap:14px;margin-bottom:10px}
+.tch-card .ava{width:64px;height:64px;font-size:20px;border-radius:20px}
+.tch-card b{display:block;font-size:17px}
+.tch-card p{margin:4px 0 8px;font-size:14px;color:var(--muted)}
+.tch-card .mods{display:flex;gap:6px;flex-wrap:wrap}
+
+/* lesson */
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:15px;margin:4px 0 10px}
+.player{position:relative;margin-top:14px;border-radius:20px;overflow:hidden;background:#0E1A14;aspect-ratio:16/9;width:100%;display:block;color:#fff;text-align:left}
+.player .grid{position:absolute;inset:0;opacity:.18}
+.player .pbtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:var(--tomato);display:grid;place-items:center}
+.player .pbtn .ic{fill:#fff;stroke:#fff;width:22px;height:22px;margin-left:3px}
+.player .meta{position:absolute;left:14px;bottom:16px;font-size:13px;opacity:.85}
+.player .prot{position:absolute;right:12px;top:12px;font-size:12px;opacity:.7;display:flex;gap:5px;align-items:center}
+.player .prot .ic{width:14px;height:14px}
+.player .pb{position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.15)}
+.player .pb i{display:block;height:100%;background:var(--tomato);transition:width 2.4s linear}
+.segs{display:flex;gap:6px;overflow-x:auto;margin:16px -18px 0;padding:0 18px}
+.segs button{flex:none;padding:8px 14px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);font-size:14px;font-weight:600}
+.segs button.act{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pane{margin-top:14px}
+.pane p{margin:0 0 10px}
+.lit{padding:12px 14px;margin-bottom:8px;font-size:14px}
+.lit b{display:block;font-size:15px}
+.tq{padding:14px;margin-bottom:10px}
+.tq .q{font-weight:600;margin-bottom:10px}
+.task{padding:16px}
+.task p{margin:6px 0 12px}
+.drop{border:1.5px dashed var(--line);border-radius:14px;padding:14px;text-align:center;color:var(--muted);font-size:14px;width:100%;display:block}
+.file{display:flex;align-items:center;gap:10px;background:var(--surface2);border-radius:12px;padding:10px 12px;font-size:14px}
+textarea.ta{display:block;width:100%;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);padding:10px 12px;min-height:90px;resize:vertical;font-size:15px;margin-top:10px}
+.status{display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--cobalt-soft);margin-top:10px;font-size:15px}
+.status .ic{color:var(--cobalt)}
+.qa{padding:14px;margin-top:10px}
+.qa .msg{display:flex;gap:10px;margin-bottom:12px}
+.qa .msg:last-child{margin-bottom:0}
+.qa .msg .ava{width:30px;height:30px;font-size:11px}
+.qa .msg b{font-size:14px}
+.qa .msg p{margin:2px 0 0;font-size:14px}
+.actionbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,440px);padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,var(--bg) 70%,transparent);z-index:5}
+.actionbar small{display:block;text-align:center;color:var(--muted);font-size:13px;margin-top:6px}
+
+/* profile */
+.me{display:flex;gap:14px;align-items:center;padding-top:6px}
+.me .ava{width:64px;height:64px;font-size:22px}
+.acad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.acad div{padding:12px}
+.acad b{display:block;font-family:var(--display);font-weight:800;font-size:28px;line-height:1}
+.acad small{color:var(--muted);font-size:13px}
+.ladder{display:flex;gap:4px}
+.ladder div{flex:1;font-size:12px;color:var(--muted);text-align:center}
+.ladder i{display:block;height:6px;border-radius:3px;background:var(--line);margin-bottom:6px}
+.ladder .got i{background:var(--gold)}
+.ladder .cur{color:var(--ink);font-weight:700}
+.diploma{padding:16px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center}
+.diploma .paper{aspect-ratio:1/1.41;border-radius:6px;background:var(--surface2);border:1.5px solid var(--line);position:relative;overflow:hidden}
+.diploma .paper i{position:absolute;left:12%;right:12%;height:4px;border-radius:2px;background:var(--line)}
+.diploma .paper .qr{position:absolute;right:10%;bottom:8%;width:26%;aspect-ratio:1;background:repeating-linear-gradient(90deg,var(--muted) 0 2px,transparent 2px 4px),repeating-linear-gradient(0deg,var(--muted) 0 2px,transparent 2px 4px);opacity:.35;border-radius:2px}
+.diploma small{color:var(--muted);font-size:14px}
+.pf{display:flex;gap:12px;align-items:center;padding:12px 14px;margin-bottom:8px}
+.pf .ic{color:var(--leaf-d)}
+.pf div{flex:1;font-size:15px;font-weight:600;line-height:1.25}
+.pf small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.rate div{display:flex;gap:12px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.rate div:last-child{border:0}
+.rate .pos{width:18px;color:var(--muted);font-weight:700}
+.rate .nm{flex:1}
+.rate .you{background:var(--gold-soft);font-weight:700}
+.sup{padding:16px}
+.calc{border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:8px 0;margin:12px 0}
+.calc div{display:flex;justify-content:space-between;padding:3px 0;font-size:15px}
+.calc .tot{font-weight:700;font-size:17px}
+.fine{font-size:13px;color:var(--muted);margin-top:8px}
+.switch{display:flex;align-items:center;gap:12px;padding:14px 16px;width:100%;text-align:left;margin-top:10px}
+.switch div{flex:1}
+.switch small{display:block;color:var(--muted);font-size:13px}
+
+/* teacher */
+.tbanner{display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border-radius:16px;padding:12px 14px;font-size:14px}
+.tbanner button{margin-left:auto;font-weight:700;text-decoration:underline;color:var(--bg)}
+.qitem{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;padding:13px 14px;margin-bottom:8px;width:100%;text-align:left}
+.qitem b{display:block;font-size:15px;line-height:1.25}
+.qitem small{color:var(--muted);font-size:13px}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.kpi div{padding:12px}
+.kpi b{display:block;font-family:var(--display);font-size:28px;font-weight:800;line-height:1}
+.kpi small{color:var(--muted);font-size:13px}
+.answer{padding:14px;font-size:15px}
+
+/* tabs */
+.tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,440px);display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom,0px));z-index:5}
+.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:var(--muted);padding:4px 0;border-radius:12px}
+.tabs button.act{color:var(--ink);font-weight:700}
+.tabs button.act .ic{stroke-width:2.3;color:var(--cobalt)}
+.sub-mode .tabs{display:none}
+
+/* layers */
+.layer{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center;background:rgba(10,20,15,.45)}
+.sheet{width:min(100%,440px);background:var(--bg);border-radius:24px 24px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom,0px));max-height:86vh;overflow:auto;animation:up .28s cubic-bezier(.3,.7,.2,1)}
+.sheet .grip{width:40px;height:5px;border-radius:5px;background:var(--line);margin:0 auto 14px}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.lv{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;margin-bottom:8px}
+.lv .st{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--muted);flex:none}
+.lv.done .st{background:var(--leaf);border-color:var(--leaf);color:#fff}
+.lv.done .st .ic{width:15px;height:15px;stroke-width:3}
+.lv.cur{box-shadow:0 0 0 2px var(--cobalt)}
+.lv.cur .st{border-color:var(--cobalt);color:var(--cobalt)}
+.lv[disabled]{opacity:.55;cursor:default}
+.lv span.tx{flex:1;font-weight:600;font-size:15px;line-height:1.25}
+.lv small{display:block;font-weight:400;color:var(--muted);font-size:13px}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;font-size:14px;z-index:40;white-space:nowrap;animation:up .25s}
+.float{position:fixed;z-index:30;font-weight:800;color:var(--gold);pointer-events:none;animation:fl .9s ease-out forwards;font-family:var(--display);font-size:22px}
+@keyframes fl{to{transform:translateY(-44px);opacity:0}}
+.note{font-size:12px;color:var(--muted);margin-top:22px;text-align:center}
+/* вход и учебный отдел */
+.login{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 22px calc(24px + env(safe-area-inset-bottom,0px))}
+.brand{font-family:var(--display);font-weight:800;font-size:40px;line-height:.95;letter-spacing:.01em}
+.brand-sub{color:var(--muted);font-size:15px;margin-top:8px}
+.brand-track{display:flex;gap:3px;margin:22px 0 26px}
+.brand-track i{height:8px;border-radius:3px;background:var(--line)}
+.field{display:block;margin-bottom:12px}
+.field span{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.field input{display:block;width:100%;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);padding:13px 14px;font-size:16px}
+.field input:focus-visible{outline:3px solid var(--cobalt);outline-offset:1px}
+.err{color:var(--tomato);font-size:14px;margin:-4px 0 10px}
+.info{display:flex;gap:10px;align-items:flex-start;background:var(--surface2);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--muted);margin-top:16px}
+.info .ic{width:19px;height:19px;color:var(--ink);margin-top:1px}
+.demo{margin-top:22px;border-top:1.5px dashed var(--line);padding-top:16px}
+.demo small{display:block;color:var(--muted);font-size:13px;margin-bottom:8px}
+.demo .row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.demo button{border:1.5px solid var(--line);border-radius:12px;padding:9px 4px;font-size:13px;font-weight:600;background:var(--surface)}
+.rules{list-style:none;padding:0;margin:6px 0 14px;font-size:14px}
+.rules li{display:flex;gap:8px;align-items:center;color:var(--muted);margin-bottom:4px}
+.rules li .ic{width:16px;height:16px}
+.rules li.ok{color:var(--leaf-d)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;margin:6px 0 16px;cursor:pointer}
+.consent input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--leaf)}
+.pipe{display:flex;gap:3px;margin-top:8px}
+.pipe i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.pipe i.on{background:var(--leaf)}
+.stu{padding:13px 14px;margin-bottom:8px}
+.stu .h{display:flex;gap:12px;align-items:center}
+.stu .h div{flex:1;min-width:0}
+.stu b{display:block;font-size:15px}
+.stu small{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.stu .act{margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.stu .act .btn{padding:8px 14px;font-size:14px;border-radius:12px}
+.modal{width:min(100% - 36px,380px);background:var(--bg);border-radius:24px;padding:22px 20px;animation:up .25s}
+.layer.center{align-items:center}
+.pw{font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:26px;font-weight:700;letter-spacing:.06em;text-align:center;background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:14px;margin:14px 0 10px;user-select:all}
+.docs .pf .ic{color:var(--leaf-d)}
+
+.field .consent span,.field .opt span{display:inline;font-weight:400;margin:0;font-size:inherit}
+.sect-head .muted{white-space:nowrap}
+input.inp{flex:1;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);padding:10px 12px;font-size:15px}
+.drop small{display:block;margin-top:4px;font-size:12px}
+.jr-wrap{overflow-x:auto}
+.jr{border-collapse:collapse;width:100%;font-size:14px;min-width:380px}
+.jr th,.jr td{padding:10px 10px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+.jr th{font-size:12px;color:var(--muted);font-weight:600;background:var(--surface2)}
+.jr td:first-child,.jr th:first-child{text-align:left;position:sticky;left:0;background:var(--surface)}
+.jr th:first-child{background:var(--surface2)}
+.jr td{font-family:var(--display);font-weight:700;font-size:17px}
+.jr td:first-child{font-family:var(--body);font-weight:500;font-size:14px}
+.jr td.e{color:var(--muted);font-weight:500}
+.jr td.w{color:var(--gold)}
+.jr td.b{color:var(--tomato);font-size:14px}
+.nrow{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:15px}
+.nrow:last-child{border:0}
+.nrow>span{flex:1}
+.nrow small{display:block;color:var(--muted);font-size:12px}
+.tog{width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;flex:none;transition:background .2s}
+.tog i{position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.tog.on{background:var(--leaf)}
+.tog.on i{transform:translateX(18px)}
+.tog[disabled]{opacity:.35;cursor:not-allowed}
+
+/* фирменный стиль */
+h1,h2,h3{letter-spacing:-.02em}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:21px}
+h3{font-size:17px}
+.app{background:var(--bg) radial-gradient(rgba(47,107,255,.12) 1px,transparent 1.2px) 0 0/22px 22px}
+.btn-main{background:var(--grad);box-shadow:var(--glow)}
+.btn-main:hover{background:var(--grad);filter:brightness(1.05)}
+.btn-main[disabled]{background:var(--line);box-shadow:none}
+.card{border:1px solid rgba(47,107,255,.12)}
+.route{background:var(--grad) !important;box-shadow:0 18px 40px -18px rgba(47,107,255,.7);position:relative}
+.route::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.25) 1px,transparent 1.2px);background-size:18px 18px;opacity:.5;pointer-events:none}
+.route>*{position:relative}
+.route .big{font-size:42px;letter-spacing:-.03em}
+.player .pbtn{background:var(--grad);box-shadow:0 0 30px rgba(90,99,255,.7)}
+.player .pb i{background:var(--grad)}
+.tabs{background:color-mix(in srgb,var(--surface) 88%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.tabs button.act{color:var(--leaf-d)}
+.tabs button.act .ic{color:var(--leaf)}
+.mod.cur{box-shadow:0 0 0 2px var(--leaf),var(--glow)}
+.mod.cur .no{background:var(--grad)}
+.mod.done .no{background:var(--leaf-soft);color:var(--leaf-d)}
+.lv.cur{box-shadow:0 0 0 2px var(--leaf)}
+.lv.cur .st{border-color:var(--leaf);color:var(--leaf)}
+.segs button.act{background:var(--grad);border-color:transparent;color:#fff;box-shadow:var(--glow)}
+.tbanner{background:var(--grad);box-shadow:var(--glow)}
+.tbanner,.tbanner button{color:#fff}
+.dl{border:1px solid rgba(123,92,255,.2)}
+.xp{border:1px solid rgba(123,92,255,.25)}
+.brand{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sheet,.modal{background:var(--bg)}
+.num,.stats b,.acad b,.kpi b,.dl .days{letter-spacing:-.02em}
+.dl .days{color:var(--cobalt)}
+.player{background:#1C1F2A}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <main id="screen"></main>
+  <nav class="tabs" id="tabs" aria-label="Разделы"></nav>
+</div>
+<div id="layer"></div>
+
+<script>
+const P = {
+  home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
+  route:'<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+  runner:'<circle cx="13" cy="4" r="2"/><path d="m4 17 5 1 .8-1.6M15 21v-4l-4-3 1-6"/><path d="m7 12 1-4 5-1 3 3 3 1"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+  user:'<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  play:'<path d="M6 3 20 12 6 21Z"/>',
+  back:'<path d="m12 19-7-7 7-7M19 12H5"/>',
+  chev:'<path d="m9 18 6-6-6-6"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  file:'<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h6"/>',
+  upload:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',
+  award:'<circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/>',
+  link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+  inbox:'<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.7 1.1z"/>',
+  msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  flag:'<path d="M4 22V4M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1"/>',
+  dumbbell:'<path d="M6.5 6.5 17.5 17.5M21 21l-1-1M3 3l1 1M18 22l4-4M2 6l4-4M3 10l7-7M14 21l7-7"/>',
+  ball:'<circle cx="12" cy="12" r="10"/><path d="m12 7 4 3-1.5 4.5h-5L8 10z"/><path d="M12 2v5M22 11l-6-1M18 20l-3.5-5.5M6 20l3.5-5.5M2 11l6-1"/>',
+  wave:'<path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><circle cx="16" cy="5" r="2"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  video:'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',
+  grid:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>',
+  bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/>',
+  send:'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>',
+  mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  swap:'<path d="M16 3l4 4-4 4M20 7H4M8 21l-4-4 4-4M4 17h16"/>',
+  star:'<path d="m12 3 1.9 5.8 6.1 1.9-5 3.6 1.9 5.9-4.9-3.6-4.9 3.6 1.9-5.9-5-3.6 6.1-1.9z"/>',
+};
+const ic = (n, c='') => `<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+
+/* ---------- данные ---------- */
+const TEACH = {
+  kravets:{n:'Ольга Кравец', r:'Кандидат биологических наук, биохимик питания', c:'#7B5CFF', i:'ОК'},
+  belov:{n:'Андрей Белов', r:'Спортивный физиолог, функциональная диагностика', c:'#2F6BFF', i:'АБ'},
+  lebedeva:{n:'Мария Лебедева', r:'Руководитель программы, спортивный нутрициолог', c:'#1F4FD6', i:'МЛ'},
+  orlov:{n:'Дмитрий Орлов', r:'Спортивный врач, антидопинговое сопровождение', c:'#6A4DF0', i:'ДО'},
+  vlasova:{n:'Екатерина Власова', r:'Психолог спорта, пищевое поведение спортсменов', c:'#5A63FF', i:'ЕВ'},
+  practice:{n:'Практики по направлениям', r:'Нутрициологи сборных и клубов', c:'#4A7BFF', i:'ПН'},
+};
+const MODS = [
+  {t:'Физиология и биохимия питания', h:28, tc:'kravets', l:6},
+  {t:'Физиология спорта и энергообмен', h:24, tc:'belov', l:5},
+  {t:'Нутриенты в спорте', h:28, tc:'lebedeva', l:6},
+  {t:'Оценка потребностей и расчёт рациона', h:30, tc:'lebedeva', l:6,
+    lessons:['Сбор данных о спортсмене','Основной обмен: методы оценки','Расчёт энергозатрат: формулы и поправки','Распределение макронутриентов','Рацион на тренировочный день','Практикум: полный расчёт']},
+  {t:'Гидратация и электролиты', h:12, tc:'belov', l:3},
+  {t:'Питание по видам спорта', h:30, tc:'practice', l:7},
+  {t:'Периодизация питания', h:24, tc:'lebedeva', l:5},
+  {t:'Спортивные добавки и антидопинг', h:20, tc:'orlov', l:5},
+  {t:'Особые группы и RED-S', h:22, tc:'orlov', l:5},
+  {t:'Консультирование и этика', h:22, tc:'vlasova', l:5},
+  {t:'Итоговая аттестация', h:20, tc:'lebedeva', l:2, final:true},
+];
+const OPEN_DATES = ['','','','','12 октября','26 октября','9 ноября','23 ноября','7 декабря','21 декабря','январь 2027'];
+const CLIENTS = [
+  {n:'Игорь, 34', s:'Марафон', ic:'runner', c:'#2F6BFF', ph:1, st:'В работе', stc:'cobalt', m:4, d:'Через три дня — осенний марафон, тренируется 6 раз в неделю'},
+  {n:'Максим, 19', s:'Футбол', ic:'ball', c:'#2F6BFF', ph:2, st:'Кейс принят', stc:'leaf', m:3, d:'Межсезонье, набор мышечной массы'},
+  {n:'Сергей, 45', s:'Триатлон', ic:'wave', c:'#4A7BFF', ph:0, st:'Модуль 7', stc:'mute', m:7, d:'Ветеран, планирует сезон стартов', lock:true},
+  {n:'Дарья, 27', s:'Пауэрлифтинг', ic:'dumbbell', c:'#6A4DF0', ph:1, st:'Модуль 6', stc:'mute', m:6, d:'Соревнуется в весовой категории', lock:true},
+  {n:'Вера, 14', s:'Художественная гимнастика', ic:'star', c:'#7B5CFF', ph:0, st:'Модуль 9', stc:'mute', m:9, d:'Несовершеннолетняя: работа с родителями, тренером и врачом', lock:true},
+];
+const PHASES = ['Подготовка','Соревнования','Восстановление'];
+const CASE = {
+  q:'Игорь за три дня до марафона спрашивает, стоит ли ему «загрузиться углеводами». Что вы ответите?',
+  o:['Да: за 36–48 часов увеличить долю углеводов и снизить клетчатку, не добавляя лишнего жира','Нет: углеводы перед стартом вызывают отёки и тяжесть','Лучше перейти на высокобелковое питание до старта'],
+  a:0,
+  e:'Углеводная загрузка — стандартная практика перед дистанциями дольше 90 минут. Снижение клетчатки помогает избежать проблем с ЖКТ на старте. Расчёт под массу тела разбираем в модуле 7.'
+};
+const LEAGUE = [['Павел К.',1480],['Юлия Д.',1310],['Ирина М.',1105],['Тимур Р.',990]];
+const RANKS = [['Студент',0],['Ассистент',500],['Практикант',1000],['Специалист',2000],['Эксперт',3500]];
+const QUEUE = [
+  {s:'Анна Смирнова', i:'АС', c:'#2F6BFF', m:4, w:'Расчёт энергозатрат: Игорь, марафон', t:'Сегодня, 10:42',
+    a:'Основной обмен считала по формуле Миффлина — Сан-Жеора, затем применила коэффициент активности для 6 тренировок в неделю и добавила затраты на длительные пробежки по выходным. Итоговые цифры и таблица — во вложении.'},
+  {s:'Павел Ким', i:'ПК', c:'#2F6BFF', m:3, w:'Анализ рациона футболиста', t:'Вчера, 21:15', a:'Проанализировал трёхдневный дневник питания Максима: дефицит белка в первой половине дня и мало углеводов вокруг тренировок. Предлагаю перераспределить приёмы пищи.'},
+  {s:'Юлия Дронова', i:'ЮД', c:'#5A63FF', m:4, w:'Сбор данных о спортсмене: анкета', t:'Вчера, 18:03', a:'Составила анкету первичной консультации из 24 вопросов: тренировочный режим, пищевые привычки, сон, цели на сезон и красные флаги для направления к врачу.'},
+];
+
+const STAGES=['Заявка','Документы проверены','Договор и оплата','Зачислен приказом','Доступ выдан'];
+const ROSTER=[
+  {n:'Анна Смирнова', e:'anna.smirnova@mail.ru', i:'АС', c:'#2F6BFF', st:4},
+  {n:'Павел Ким', e:'p.kim@yandex.ru', i:'ПК', c:'#2F6BFF', st:4},
+  {n:'Юлия Дронова', e:'dronova.yu@gmail.com', i:'ЮД', c:'#5A63FF', st:3},
+  {n:'Тимур Рахимов', e:'t.rakhimov@mail.ru', i:'ТР', c:'#4A7BFF', st:2},
+  {n:'Светлана Орехова', e:'orekhova.s@yandex.ru', i:'СО', c:'#7B5CFF', st:1},
+  {n:'Никита Зайцев', e:'n.zaitsev@mail.ru', i:'НЗ', c:'#1F4FD6', st:0},
+];
+const DEMO={'anna.smirnova@mail.ru':'student','lebedeva@nutrilogia.ru':'teacher','office@nutrilogia.ru':'admin'};
+/* ---------- состояние ---------- */
+const KEY='nutrilogia-pro-demo-v1';
+const fresh=()=>({auth:null, pwdChanged:false, consent:false, roster:ROSTER.map(r=>r.st), xp:1240, cur:3, curDone:2, caseAns:null, watched:false, testAns:{}, file:false, answer:'', submitted:false, queue:QUEUE.map((_,i)=>i)});
+let S=fresh(); try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(fresh(),JSON.parse(r));}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}};
+let tab='home', sub=null, pane='notes', teacher=false, reviewing=null;
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('ru-RU');
+const TOTAL = MODS.reduce((a,m)=>a+m.h,0);
+const hoursDone = () => MODS.slice(0,S.cur).reduce((a,m)=>a+m.h,0) + Math.round(MODS[S.cur].h*S.curDone/MODS[S.cur].l);
+const modState = i => i<S.cur?'done':i===S.cur?'cur':'lock';
+const GRADES=[92,88,95];
+
+/* ---------- графика ---------- */
+function track(){
+  const W=340, x0=10, gap=2, avail=W-gap*(MODS.length-1);
+  let x=x0, s='', mk=0;
+  MODS.forEach((m,i)=>{
+    const w=avail*m.h/TOTAL, st=modState(i);
+    s+=`<rect x="${x.toFixed(1)}" y="20" width="${w.toFixed(1)}" height="16" rx="3" fill="${st==='done'?'#fff':'rgba(255,255,255,.22)'}"/>`;
+    if(st==='cur'){ const f=w*S.curDone/m.l; s+=`<rect x="${x.toFixed(1)}" y="20" width="${Math.max(f,3).toFixed(1)}" height="16" rx="3" fill="rgba(255,255,255,.65)"/>`; mk=x+f; }
+    s+=`<text x="${(x+w/2).toFixed(1)}" y="54" text-anchor="middle" font-size="10" fill="#fff" opacity="${st==='lock'?.45:.85}" font-family="Onest,Arial">${m.final?'ИА':i+1}</text>`;
+    x+=w+gap;
+  });
+  let chk=''; for(let r=0;r<4;r++)for(let c=0;c<2;c++) if((r+c)%2===0) chk+=`<rect x="${352+c*4}" y="${20+r*4}" width="4" height="4" fill="#fff"/>`;
+  return `<svg viewBox="0 0 364 60" role="img" aria-label="Маршрут программы: модуль ${S.cur+1} из 10">
+    ${s}<rect x="352" y="20" width="8" height="16" fill="rgba(255,255,255,.25)"/>${chk}
+    <line x1="${mk.toFixed(1)}" y1="10" x2="${mk.toFixed(1)}" y2="40" stroke="#fff" stroke-width="2"/>
+    <circle cx="${mk.toFixed(1)}" cy="9" r="6" fill="#fff" stroke="#1F4FD6" stroke-width="2"/></svg>`;
+}
+const playerGrid=()=>{let s='';for(let i=0;i<14;i++)s+=`<path d="M${i*30} 0V200" stroke="#fff" stroke-width=".6"/>`;for(let j=0;j<8;j++)s+=`<path d="M0 ${j*30}H400" stroke="#fff" stroke-width=".6"/>`;
+  return `<svg class="grid" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${s}<path d="M0 170 C60 160 90 90 150 110 S250 40 300 70 380 30 400 40" stroke="#7B5CFF" stroke-width="3" fill="none" opacity="1"/></svg>`;};
+const ava=(t,cls='')=>`<span class="ava ${cls}" style="background:${t.c}">${t.i}</span>`;
+
+/* ---------- экраны ---------- */
+function home(){
+  const m=MODS[S.cur], t=TEACH[m.tc], li=S.curDone, h=hoursDone();
+  const lname = m.lessons? m.lessons[li] : `Урок ${li+1}`;
+  return `
+  <header class="top"><div><small>Поток «Осень-2026»</small><h1>Анна, модуль ${S.cur+1}</h1></div>
+    <span class="xp">${ic('bolt')}${fmt(S.xp)}</span></header>
+
+  <section class="route" aria-label="Маршрут программы">
+    <div class="rt"><div><div class="lbl">Пройдено часов</div><div class="big">${h}<span> / ${TOTAL}</span></div></div>
+      <div style="text-align:right"><div class="lbl">До аттестации</div><div class="num" style="font-size:24px">${10-S.cur} модулей</div></div></div>
+    ${track()}
+  </section>
+
+  <section class="sect">
+    <div class="card next">
+      <small class="muted">${m.t}, урок ${li+1} из ${m.l}</small>
+      <h2 style="margin-top:4px">${lname}</h2>
+      <div class="tch">${ava(t)}<span>${t.n}<br>Видео, 24 минуты</span></div>
+      <button class="btn btn-main btn-block" onclick="openLesson()">Продолжить урок</button>
+    </div>
+    <div class="dl">${ic('clock')}<div><b>Практическая работа модуля ${S.cur+1}</b><small>Сдать до 28 сентября</small></div>
+      <div class="days">7<small>дней</small></div></div>
+  </section>
+
+  <section class="sect">
+    <div class="sect-head"><h2>Кейс дня</h2><span class="chip chip-gold">+10 опыта</span></div>
+    <div class="card case">
+      <span class="chip chip-cobalt">${ic('runner')}Игорь, марафон</span>
+      <div class="q">${CASE.q}</div>
+      ${CASE.o.map((o,i)=>{const done=S.caseAns!==null; const cls=done?(i===CASE.a?'ok':i===S.caseAns?'bad':''):'';
+        return `<button class="opt ${cls}" ${done?'disabled':''} onclick="answerCase(${i},event)">${o}</button>`;}).join('')}
+      ${S.caseAns!==null?`<div class="expl">${S.caseAns===CASE.a?'<b style="color:var(--leaf-d)">Верно.</b> ':'<b>Разберём.</b> '}${CASE.e}</div>`:''}
+    </div>
+  </section>
+
+  <section class="sect">
+    <div class="sect-head"><h2>Клиенты практики</h2><button class="muted" style="font-size:14px" onclick="go('practice')">Все</button></div>
+    <div class="hscroll">${CLIENTS.map(clientCard).join('')}</div>
+  </section>
+
+  <section class="sect">
+    <div class="card" style="padding:14px 16px;display:flex;gap:12px;align-items:center">
+      ${ava(TEACH.lebedeva)}<div style="flex:1"><b style="font-size:15px">Разбор кейсов потока</b><small class="muted" style="display:block;font-size:13px">Четверг, 19:00, Мария Лебедева</small></div>
+      <button class="btn btn-ghost" style="padding:9px 14px;font-size:14px" onclick="toast('Напомним за час до эфира')">Напомнить</button></div>
+  </section>`;
+}
+function clientCard(c){
+  return `<div class="card client ${c.lock?'locked':''}">
+    <div class="ch"><span class="sp" style="background:${c.c}1f;color:${c.c}">${ic(c.ic)}</span><div><b>${c.n}</b><small>${c.s}</small></div></div>
+    <div><div class="season">${PHASES.map((_,i)=>`<i class="${i===c.ph?'on':''}"></i>`).join('')}</div>
+      <div class="season-l" style="margin-top:4px"><span>${PHASES[c.ph]}</span></div></div>
+    <p>${c.d}</p>
+    <div>${c.lock?`<span class="chip chip-mute">${ic('lock')}Появится в модуле ${c.m}</span>`:`<span class="chip chip-${c.stc}">${c.st}</span>`}</div>
+  </div>`;
+}
+function program(){
+  const h=hoursDone();
+  return `
+  <header class="top"><div><small>Спортивная нутрициология</small><h1>Программа</h1></div></header>
+  <div class="card hours sect" style="margin-top:16px">
+    <div class="row"><span class="muted" style="font-size:14px">Учебные часы</span><span class="num" style="font-size:24px">${h} / ${TOTAL}</span></div>
+    <div class="hbar">${MODS.map((m,i)=>{const st=modState(i); const bg=st==='done'?'var(--leaf)':st==='cur'?'var(--cobalt)':'transparent'; return `<i style="flex:${m.h};background:${bg};${st==='cur'?`opacity:${.35+.65*S.curDone/m.l}`:''}"></i>`;}).join('')}</div>
+    <p class="fine">Диплом выдаётся после итоговой аттестации и закрытия всех модулей.</p>
+  </div>
+  <section class="sect">
+    ${MODS.map((m,i)=>{const st=modState(i), t=TEACH[m.tc];
+      return `<button class="card mod ${st}" onclick="openModule(${i})" ${st==='lock'?'aria-disabled="true"':''}>
+        <span class="no">${st==='done'?ic('check'):m.final?ic('flag'):i+1}</span>
+        <span><b>${m.t}</b><small>${t.n}, ${m.h} ч</small>${st==='cur'?`<div class="mprog"><i style="width:${S.curDone/m.l*100}%"></i></div>`:''}</span>
+        <span class="rgt">${st==='done'?`<strong>${GRADES[i]||90}</strong>баллов`:st==='cur'?`<strong>${S.curDone}/${m.l}</strong>уроков`:`откроется<br>${OPEN_DATES[i]}`}</span>
+      </button>`;}).join('')}
+  </section>`;
+}
+function practice(){
+  return `
+  <header class="top"><div><small>Вымышленные клиенты для отработки</small><h1>Моя практика</h1></div></header>
+  <p class="muted" style="margin:10px 0 0;font-size:15px">Каждый модуль приводит нового спортсмена. Его кейс вы ведёте через следующие модули, а принятые работы попадают в портфолио.</p>
+  <div class="clients-grid sect" style="margin-top:16px">${CLIENTS.map(clientCard).join('')}</div>`;
+}
+function faculty(){
+  const byT={}; MODS.forEach((m,i)=>{(byT[m.tc]=byT[m.tc]||[]).push(m.final?'ИА':i+1)});
+  return `
+  <header class="top"><div><small>Преподаватели программы</small><h1>Кафедра</h1></div></header>
+  <section class="sect" style="margin-top:16px">
+    ${Object.entries(TEACH).map(([k,t])=>`<div class="card tch-card">${ava(t)}<div><b>${t.n}</b><p>${t.r}</p>
+      <div class="mods">${(byT[k]||[]).map(n=>`<span class="chip chip-mute">${n==='ИА'?'Аттестация':'Модуль '+n}</span>`).join('')}</div></div></div>`).join('')}
+  </section>
+  <p class="note">Имена и регалии в прототипе — примеры.</p>`;
+}
+function profile(){
+  const r=RANKS.reduce((a,x,i)=>S.xp>=x[1]?i:a,0), nx=RANKS[r+1];
+  const board=[...LEAGUE,['Анна (вы)',S.xp,true]].sort((a,b)=>b[1]-a[1]);
+  const price=12000, off=Math.min(Math.round(price*.3), S.xp);
+  return `
+  <div class="me"><span class="ava" style="background:var(--grad)">АС</span>
+    <div><h1 style="font-size:30px">Анна Смирнова</h1><span class="chip chip-leaf" style="margin-top:6px">Трек: частная онлайн-практика</span></div></div>
+
+  <section class="sect"><div class="sect-head"><h2>Успеваемость</h2></div>
+    <div class="acad"><div class="card"><b>${hoursDone()}</b><small>часов из ${TOTAL}</small></div>
+      <div class="card"><b>92</b><small>средний балл тестов</small></div>
+      <div class="card"><b>3/3</b><small>работ принято</small></div></div></section>
+
+  <section class="sect"><div class="card diploma">
+    <div class="paper"><i style="top:14%"></i><i style="top:24%;right:30%"></i><i style="top:40%"></i><i style="top:48%;right:40%"></i><span class="qr"></span></div>
+    <div><h3>Диплом о профессиональной переподготовке</h3><small>Будет доступен после итоговой аттестации. С уникальным номером и QR-кодом для проверки.</small></div>
+  </div></section>
+
+  <section class="sect"><div class="sect-head"><h2>Портфолио</h2><button class="muted" style="font-size:14px;display:flex;gap:4px;align-items:center" onclick="toast('Ссылка на портфолио скопирована')">${ic('link')}Ссылка</button></div>
+    ${[['Профиль метаболизма нутриентов','Модуль 1, 92 балла'],['Профиль энергозатрат спортсмена','Модуль 2, 88 баллов'],['Анализ рациона: Максим, футбол','Модуль 3, 95 баллов']].map(([a,b])=>`<div class="card pf">${ic('award')}<div>${a}<small>${b}</small></div></div>`).join('')}
+  </section>
+
+  <section class="sect"><div class="sect-head"><h2>Опыт: ${RANKS[r][0]}</h2>${nx?`<span class="muted">до «${nx[0]}» ${fmt(nx[1]-S.xp)}</span>`:''}</div>
+    <div class="ladder">${RANKS.map((x,i)=>`<div class="${i<=r?'got':''} ${i===r?'cur':''}"><i></i>${x[0]}</div>`).join('')}</div>
+    <div class="card rate" style="margin-top:14px;overflow:hidden">${board.map((b,i)=>`<div class="${b[2]?'you':''}"><span class="pos">${i+1}</span><span class="nm">${b[0]}</span><span class="num">${fmt(b[1])}</span></div>`).join('')}</div>
+    <p class="fine">Рейтинг потока по опыту. На оценки и диплом не влияет.</p>
+  </section>
+
+  <section class="sect"><div class="card sup">
+    <h3>Супервизия с практиком</h3>
+    <p class="muted" style="margin:6px 0 0;font-size:14px">Четыре разбора ваших реальных кейсов после выпуска. Опыт покрывает до 30 % стоимости.</p>
+    <div class="calc"><div><span>Стоимость</span><span>${fmt(price)} ₽</span></div>
+      <div><span>Опытом</span><span style="color:var(--gold)">−${fmt(off)} ₽</span></div>
+      <div class="tot"><span>К оплате</span><span>${fmt(price-off)} ₽</span></div></div>
+    <button class="btn btn-main btn-block" onclick="toast('Здесь откроется оплата')">Записаться за ${fmt(price-off)} ₽</button>
+  </div></section>
+
+  <section class="sect docs"><div class="sect-head"><h2>Документы для диплома</h2></div>
+    ${[['Паспорт','Проверен учебным отделом'],['СНИЛС','Нужен для записи в ФИС ФРДО'],['Диплом о высшем образовании','Основание для зачисления'],['Договор и приказ о зачислении','№ 0731/26 от 31 июля']].map(([a,b])=>`<div class="card pf">${ic('check')}<div>${a}<small>${b}</small></div></div>`).join('')}
+  </section>
+  <section class="sect"><div class="sect-head"><h2>Уведомления</h2></div>
+    <div class="card pf">${ic('mail')}<div>Почта<small>anna.smirnova@mail.ru: доступ, документы, дедлайны</small></div><span class="chip chip-leaf">Включено</span></div>
+    <div class="card pf">${ic('send')}<div>Telegram<small>${S.tgOn?'Бот @nutrilogia_bot подключён':'Дедлайны, проверка работ и эфиры в Telegram'}</small></div>
+      ${S.tgOn?'<span class="chip chip-leaf">Включено</span>':`<button class="btn btn-soft" style="padding:8px 12px;font-size:14px" onclick="S.tgOn=true;save();render();toast('Бот подключён')">Подключить</button>`}</div>
+  </section>
+  <section class="sect"><div class="sect-head"><h2>Аккаунт</h2></div>
+    <div class="card pf">${ic('shield')}<div>anna.smirnova@mail.ru<small>Активный сеанс: 1 устройство</small></div></div>
+    <button class="btn btn-ghost btn-block" onclick="toast('Письмо для смены пароля отправлено')">Сменить пароль</button>
+    <button class="btn btn-ghost btn-block" style="margin-top:8px" onclick="logout()">Выйти</button>
+  </section>
+  <button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="resetDemo()">Сбросить демо-данные</button>
+  <p class="note">Выпускник программы не ставит диагнозов, не назначает лекарств и не является врачом-диетологом.</p>`;
+}
+
+function lesson(){
+  const m=MODS[S.cur], t=TEACH[m.tc], li=S.curDone;
+  const lname=m.lessons?m.lessons[li]:`Урок ${li+1}`;
+  const tests=[
+    {q:'Что лежит в основе расчёта суточных энергозатрат спортсмена?',o:['Основной обмен с поправкой на активность и тренировочную нагрузку','Только масса тела','Калорийность привычного рациона'],a:0},
+    {q:'Что нужно уточнить до расчёта рациона в первую очередь?',o:['Цели, вид спорта и этап сезона','Любимые продукты','Рост и возраст, остальное не важно'],a:0},
+  ];
+  const testDone=tests.every((x,i)=>S.testAns[i]===x.a);
+  const ready=S.watched && testDone && (S.file || S.answer.trim().length>=30);
+  const hint=!S.watched?'Досмотрите видео: засчитывается от 90 %':!testDone?'Ответьте на вопросы теста':!(S.file||S.answer.trim().length>=30)?'Прикрепите файл или опишите решение':'После проверки: +50 опыта';
+  const segs=[['notes','Конспект'],['lit','Литература'],['test','Тест'],['task','Задание'],['qa','Вопросы']];
+  let body='';
+  if(pane==='notes') body=`<div class="card" style="padding:16px"><p>Расчёт начинается с оценки основного обмена. Выбор формулы зависит от доступных данных: если известен состав тела, точнее формулы, учитывающие безжировую массу.</p><p style="margin:0">Затем добавляем затраты на тренировки по фактическому объёму и интенсивности, а не усреднённым коэффициентом. Для кейса Игоря учитываем длительные пробежки выходного дня отдельно.</p></div>`;
+  if(pane==='lit') body=[['Позиция международного общества спортивного питания по энергетическим потребностям','Обзор, PDF'],['Методы оценки основного обмена у спортсменов','Статья, PDF'],['Таблица поправок на вид нагрузки','Материал преподавателя']].map(([a,b])=>`<div class="card lit"><b>${a}</b><span class="muted">${b}</span></div>`).join('');
+  if(pane==='test') body=tests.map((x,i)=>`<div class="card tq"><div class="q">${i+1}. ${x.q}</div>${x.o.map((o,j)=>{const a=S.testAns[i]; const cls=a===undefined?'':j===x.a&&a===j?'ok':a===j?'bad':''; return `<button class="opt ${cls}" onclick="answerTest(${i},${j})">${o}</button>`;}).join('')}</div>`).join('')+(testDone?`<div class="status" style="background:var(--leaf-soft)">${ic('check')}Тест пройден, можно переходить к заданию</div>`:'');
+  if(pane==='task') body= S.submitted ? `<div class="status">${ic('clock')}<div><b>Работа на проверке</b><br><small class="muted">Мария Лебедева проверит в течение 3 рабочих дней</small></div></div>` :
+    `<div class="card task"><span class="chip chip-cobalt">${ic('runner')}Кейс: Игорь, марафон</span>
+      <p>Рассчитайте суточные энергозатраты Игоря на этапе подготовки. Опишите, какую формулу выбрали и какие поправки внесли.</p>
+      ${S.file?`<div class="file">${ic('file')}<span style="flex:1">Расчёт_Игорь.xlsx</span><button onclick="S.file=false;save();render()" class="muted">Убрать</button></div>`:`<button class="drop" onclick="S.file=true;save();render()">${ic('upload')}<br>Прикрепить файл с расчётом</button>`}
+      <textarea class="ta" oninput="S.answer=this.value;save();refresh()" placeholder="Комментарий к решению">${S.answer}</textarea></div>`;
+  if(pane==='qa') body=`<div class="card qa">
+      <div class="msg"><span class="ava" style="background:#2F6BFF">ПК</span><div><b>Павел Ким</b><p>Если у спортсмена нет данных о составе тела, какую формулу брать?</p></div></div>
+      <div class="msg">${ava(t)}<div><b>${t.n}</b><p>Миффлина — Сан-Жеора как базовую, и обязательно отметьте в работе, что это оценка с погрешностью.</p></div></div></div>
+      <button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="toast('Вопрос отправлен преподавателю')">${ic('msg')}Задать вопрос</button>`;
+  return `
+  <button class="back-btn" onclick="closeSub()">${ic('back')}${m.t}</button>
+  <small class="muted">Модуль ${S.cur+1}, урок ${li+1} из ${m.l}</small>
+  <h1 style="font-size:30px;margin-top:2px">${lname}</h1>
+  <button class="player" onclick="watch()" aria-label="Смотреть видео">
+    ${playerGrid()}<span class="prot">${ic('shield')}Защищённое видео</span>
+    <span class="pbtn">${S.watched?ic('check'):ic('play')}</span>
+    <span class="meta">${t.n}, 24 минуты${S.watched?', просмотрено':''}</span>
+    <span class="pb"><i id="vp" style="width:${S.watched?100:0}%"></i></span>
+  </button>
+  <div class="segs" role="tablist">${segs.map(([k,l])=>`<button role="tab" class="${pane===k?'act':''}" aria-selected="${pane===k}" onclick="setPane('${k}')">${l}</button>`).join('')}</div>
+  <div class="pane">${body}</div>
+  ${S.submitted?'':`<div class="actionbar"><button class="btn btn-main btn-block" id="sb" ${ready?'':'disabled'} onclick="submitWork()">Отправить на проверку</button><small id="hint">${hint}</small></div>`}`;
+}
+
+/* ================= КАБИНЕТ ПРЕПОДАВАТЕЛЯ ================= */
+const TSTUD=[
+  {n:'Анна Смирнова',i:'АС',c:'#2F6BFF',p:33,t:92,w:'3/3'},
+  {n:'Павел Ким',i:'ПК',c:'#2F6BFF',p:50,t:95,w:'4/4'},
+  {n:'Юлия Дронова',i:'ЮД',c:'#5A63FF',p:33,t:84,w:'3/3'},
+  {n:'Ирина Мельник',i:'ИМ',c:'#7B5CFF',p:17,t:78,w:'2/3',late:true},
+  {n:'Тимур Рахимов',i:'ТР',c:'#4A7BFF',p:0,t:71,w:'1/3',late:true},
+  {n:'Олег Панов',i:'ОП',c:'#1F4FD6',p:33,t:88,w:'3/3'},
+];
+const AUD=[['all','Весь поток',38],['late','Отстающие',5],['nowork','Не сдали работу модуля 4',11]];
+let ttab='build', editing=false, E={}, statFilter='all', mail={aud:'nowork',em:true,tg:true,when:'now',text:'Напоминаем: практическая работа модуля 4 «Расчёт энергозатрат» принимается до 28 сентября. Если есть вопросы — задайте их в уроке.'};
+const tBanner=()=>`<div class="tbanner">${ic('user')}<span>Мария Лебедева, преподаватель</span><button onclick="logout()">Выйти</button></div>`;
+
+function teacherScreen(){
+  if(ttab==='review') return reviewScreen();
+  if(ttab==='stats') return statsScreen();
+  if(ttab==='mail') return mailScreen();
+  return editing ? editorScreen() : builderScreen();
+}
+function builderScreen(){
+  const m=MODS[3], pub=S.built||[];
+  return `${tBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Модули 3, 4, 7</small><h1>Конструктор уроков</h1></div></header>
+  <div class="segs" style="margin-top:14px">${[[2,'Модуль 3'],[3,'Модуль 4'],[6,'Модуль 7']].map(([k,l])=>`<button class="${k===3?'act':''}" onclick="toast('В демо открыт модуль 4')">${l}</button>`).join('')}</div>
+  <section class="sect" style="margin-top:16px">
+    <div class="sect-head"><h2>${m.t}</h2><span class="muted">${m.h} ч</span></div>
+    ${m.lessons.map((l,k)=>`<div class="card lv">${k<5?`<span class="st" style="background:var(--leaf);border-color:var(--leaf);color:#fff">${ic('check')}</span>`:`<span class="st">${k+1}</span>`}
+      <span class="tx">${l}<small>${k<5?'Опубликован, 5 ч':'Черновик: нет теста'}</small></span><button class="muted" onclick="openEditor('${l.replace(/'/g,'')}')" aria-label="Редактировать">${ic('chev')}</button></div>`).join('')}
+    ${pub.map(t=>`<div class="card lv"><span class="st" style="background:var(--leaf);border-color:var(--leaf);color:#fff">${ic('check')}</span><span class="tx">${t}<small>Опубликован только что</small></span></div>`).join('')}
+    <button class="btn btn-main btn-block" style="margin-top:6px" onclick="openEditor('')">${ic('plus')}Новый урок</button>
+  </section>`;
+}
+function openEditor(t){ editing=true; E={t, video:t?2:0, notes:t?'Расчёт начинается с оценки основного обмена…':'', lit:t?['Позиция ISSN по энергетическим потребностям']:[], q:t?'Что лежит в основе расчёта суточных энергозатрат?':'', o:t?['Основной обмен с поправками','Только масса тела','Привычный рацион']:['','',''], a:0, task:t?'Рассчитайте энергозатраты Игоря на этапе подготовки.':'', manual:true, h:5}; render(); scrollTo(0,0); }
+function editorScreen(){
+  return `<button class="back-btn" onclick="editing=false;render()">${ic('back')}Конструктор уроков</button>
+  <small class="muted">Модуль 4, ${E.t?'редактирование':'новый урок'}</small><h1 style="font-size:30px;margin-top:2px">${E.t||'Новый урок'}</h1>
+  <section class="sect" style="margin-top:18px">
+    <label class="field"><span>Название урока</span><input value="${E.t}" oninput="E.t=this.value" placeholder="Например: Рацион на соревновательный день"></label>
+    <div class="field"><span>Видео</span>
+      ${E.video===2?`<div class="file">${ic('video')}<span style="flex:1">lecture_m4.mp4, 24:10<br><small class="muted">Загружено в видеохостинг, скачивание закрыто</small></span><button class="muted" onclick="E.video=0;render()">Заменить</button></div>`
+      :E.video===1?`<div class="file">${ic('upload')}<span style="flex:1">Загрузка и обработка… 64 %</span></div>`
+      :`<button class="drop" onclick="upVideo()">${ic('upload')}<br>Загрузить видеофайл<br><small>MP4 или MOV, защита от скачивания включится автоматически</small></button>`}</div>
+    <label class="field"><span>Конспект</span><textarea class="ta" style="margin-top:0" oninput="E.notes=this.value" placeholder="Текст конспекта или прикрепите PDF">${E.notes}</textarea></label>
+    <div class="field"><span>Литература</span>${E.lit.map(x=>`<div class="file" style="margin-bottom:6px">${ic('file')}<span>${x}</span></div>`).join('')}
+      <button class="btn btn-ghost" style="padding:8px 14px;font-size:14px" onclick="E.lit.push('Источник '+(E.lit.length+1));render()">${ic('plus')}Добавить источник</button></div>
+  </section>
+  <section class="sect"><div class="sect-head"><h2>Тест</h2><span class="muted">автопроверка</span></div>
+    <div class="card tq">
+      <label class="field"><span>Вопрос 1</span><input value="${E.q}" oninput="E.q=this.value" placeholder="Текст вопроса"></label>
+      ${E.o.map((o,k)=>`<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input type="radio" name="ca" ${E.a===k?'checked':''} onchange="E.a=${k}" aria-label="Правильный ответ" style="width:20px;height:20px;accent-color:var(--leaf)"><input class="inp" value="${o}" oninput="E.o[${k}]=this.value" placeholder="Вариант ${k+1}"></div>`).join('')}
+      <small class="muted">Отметьте правильный вариант</small></div>
+    <button class="btn btn-ghost btn-block" onclick="toast('Вопрос добавлен')">${ic('plus')}Добавить вопрос</button>
+  </section>
+  <section class="sect"><div class="sect-head"><h2>Практическое задание</h2></div>
+    <textarea class="ta" style="margin-top:0" oninput="E.task=this.value" placeholder="Условие задания">${E.task}</textarea>
+    <label class="consent" style="margin-top:12px"><input type="checkbox" ${E.manual?'checked':''} onchange="E.manual=this.checked"><span>Ручная проверка преподавателем, работа попадает в очередь проверки</span></label>
+    <label class="field"><span>Академические часы урока</span><input type="number" min="1" value="${E.h}" oninput="E.h=this.value" style="max-width:120px"></label>
+  </section>
+  <div class="actionbar" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <button class="btn btn-ghost" onclick="editing=false;render();toast('Черновик сохранён')">Сохранить черновик</button>
+    <button class="btn btn-main" onclick="publishLesson()">Опубликовать</button></div>`;
+}
+function upVideo(){ E.video=1; render(); setTimeout(()=>{E.video=2; if(editing) render();},1600); }
+function publishLesson(){
+  if(!E.t.trim()){ toast('Укажите название урока'); return; }
+  if(E.video!==2){ toast('Загрузите видео'); return; }
+  if(!S.built) S.built=[];
+  if(!MODS[3].lessons.includes(E.t)) S.built.push(E.t);
+  save(); editing=false; render(); scrollTo(0,0); toast('Урок опубликован для потока');
+}
+function reviewScreen(){
+  if(reviewing!==null){ const q=QUEUE[reviewing];
+    return `<button class="back-btn" onclick="reviewing=null;render()">${ic('back')}Очередь проверки</button>
+      <small class="muted">Модуль ${q.m}, ${q.t.toLowerCase()}</small><h1 style="font-size:28px;margin-top:2px">${q.w}</h1>
+      <div class="card" style="display:flex;gap:12px;align-items:center;padding:12px 14px;margin-top:14px">${ava(q)}<b>${q.s}</b></div>
+      <section class="sect"><div class="sect-head"><h2>Ответ слушателя</h2></div><div class="card answer">${q.a}</div>
+        <div class="file" style="margin-top:8px">${ic('file')}<span>Расчёт.xlsx</span></div></section>
+      <section class="sect"><div class="sect-head"><h2>Оценка и комментарий</h2></div>
+        <label class="field"><span>Баллы, из 100</span><input type="number" value="90" style="max-width:120px"></label>
+        <textarea class="ta" style="margin-top:0" placeholder="Что хорошо и что доработать"></textarea></section>
+      <div class="actionbar" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <button class="btn btn-ghost" onclick="decide(false)">На доработку</button>
+        <button class="btn btn-main" onclick="decide(true)">Принять</button></div>`;
+  }
+  const items=S.queue.map(i=>[i,QUEUE[i]]);
+  return `${tBanner()}
+    <header class="top" style="margin-top:14px"><div><small>Модули 3, 4, 7</small><h1>Очередь проверки</h1></div></header>
+    <div class="kpi"><div class="card"><b>${items.length}</b><small>на проверке</small></div><div class="card"><b>2</b><small>срок сегодня</small></div><div class="card"><b>3 дня</b><small>срок проверки</small></div></div>
+    <section class="sect">${items.length?items.map(([i,q])=>`<button class="card qitem" onclick="reviewing=${i};render();scrollTo(0,0)">${ava(q)}<span><b>${q.w}</b><small>${q.s}, модуль ${q.m}, ${q.t.toLowerCase()}</small></span>${ic('chev')}</button>`).join(''):
+      `<div class="card" style="padding:22px;text-align:center"><h3>Очередь пуста</h3><p class="muted" style="margin:6px 0 0">Новые работы появятся здесь, как только слушатели их отправят.</p></div>`}</section>`;
+}
+function statsScreen(){
+  const list=TSTUD.filter(s=>statFilter==='all'||s.late);
+  return `${tBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Поток «Осень-2026», модуль 4</small><h1>Успеваемость</h1></div></header>
+  <div class="kpi"><div class="card"><b>31 %</b><small>средний прогресс модуля</small></div><div class="card"><b>86</b><small>средний балл тестов</small></div><div class="card"><b style="color:var(--tomato)">5</b><small>отстают</small></div></div>
+  <div class="segs" style="margin-top:16px">${[['all','Все 38'],['late','Отстающие']].map(([k,l])=>`<button class="${statFilter===k?'act':''}" onclick="statFilter='${k}';render()">${l}</button>`).join('')}</div>
+  <section class="sect" style="margin-top:12px">
+    ${list.map(s=>`<div class="card stu"><div class="h">${ava(s)}<div><b>${s.n}</b><small>Тесты ${s.t} баллов, работ принято ${s.w}</small></div>${s.late?'<span class="chip" style="background:rgba(229,65,45,.12);color:var(--tomato)">Отстаёт</span>':''}</div>
+      <div class="mprog" style="height:6px;margin-top:10px"><i style="width:${Math.max(s.p,3)}%;background:${s.late?'var(--tomato)':'var(--cobalt)'}"></i></div>
+      <div class="act"><small>Прогресс модуля ${s.p} %</small>${s.late?`<button class="btn btn-ghost" onclick="mail.aud='late';ttab='mail';render();scrollTo(0,0)">Напомнить</button>`:''}</div></div>`).join('')}
+    ${statFilter==='all'?'<p class="fine" style="text-align:center">Показаны 6 из 38 слушателей</p>':''}
+  </section>`;
+}
+function mailScreen(){
+  const h=S.mailHist||[{t:'Эфир «Разбор кейсов потока» сегодня в 19:00',a:'Весь поток',c:'Почта, Telegram',d:'18 сентября'}];
+  return `${tBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Почта и Telegram</small><h1>Рассылка напоминаний</h1></div></header>
+  <section class="sect" style="margin-top:18px">
+    <div class="field"><span>Кому</span>${AUD.map(([k,l,n])=>`<button class="opt ${mail.aud===k?'ok':''}" onclick="mail.aud='${k}';render()">${l} <span class="muted">— ${n} чел.</span></button>`).join('')}</div>
+    <div class="field"><span>Каналы</span>
+      <label class="consent" style="margin:0 0 6px"><input type="checkbox" ${mail.em?'checked':''} onchange="mail.em=this.checked"><span>Почта</span></label>
+      <label class="consent" style="margin:0"><input type="checkbox" ${mail.tg?'checked':''} onchange="mail.tg=this.checked"><span>Telegram — у 34 из 38 слушателей подключён бот</span></label></div>
+    <label class="field"><span>Текст</span><textarea class="ta" style="margin-top:0" oninput="mail.text=this.value">${mail.text}</textarea></label>
+    <div class="segs" style="margin:0 0 16px">${[['now','Отправить сейчас'],['plan','Запланировать']].map(([k,l])=>`<button class="${mail.when===k?'act':''}" onclick="mail.when='${k}';render()">${l}</button>`).join('')}</div>
+    ${mail.when==='plan'?`<label class="field"><span>Когда</span><input type="datetime-local" value="2026-09-26T10:00" style="max-width:260px"></label>`:''}
+    <button class="btn btn-main btn-block" onclick="sendMail()">${ic('send')}${mail.when==='now'?'Отправить':'Запланировать'}</button>
+  </section>
+  <section class="sect"><div class="sect-head"><h2>История</h2></div>
+    ${h.map(x=>`<div class="card pf">${ic('send')}<div>${x.t}<small>${x.a}, ${x.c}, ${x.d}</small></div></div>`).join('')}</section>`;
+}
+function sendMail(){
+  if(!mail.em&&!mail.tg){ toast('Выберите хотя бы один канал'); return; }
+  const a=AUD.find(x=>x[0]===mail.aud);
+  S.mailHist=[{t:mail.text.slice(0,70)+(mail.text.length>70?'…':''),a:a[1],c:[mail.em&&'Почта',mail.tg&&'Telegram'].filter(Boolean).join(', '),d:mail.when==='now'?'сегодня':'запланировано на 26 сентября'},...(S.mailHist||[{t:'Эфир «Разбор кейсов потока» сегодня в 19:00',a:'Весь поток',c:'Почта, Telegram',d:'18 сентября'}])];
+  save(); render(); toast(mail.when==='now'?`Отправлено: ${a[2]} получателей`:'Рассылка запланирована');
+}
+
+/* ================= УЧЕБНЫЙ ОТДЕЛ ================= */
+const STREAMS=[
+  {n:'Весна-2026',s:'Выпуск',d:'10 марта — 25 августа',c:41},
+  {n:'Осень-2026',s:'Идёт обучение',d:'3 августа — январь 2027',c:38},
+  {n:'Весна-2027',s:'Набор открыт',d:'старт 15 марта 2027',c:12},
+];
+const GRADS=[
+  {n:'Елена Кузнецова',i:'ЕК',c:'#1F4FD6',g:'отлично',snils:true},
+  {n:'Роман Орлов',i:'РО',c:'#2F6BFF',g:'хорошо',snils:true},
+  {n:'Мария Гусева',i:'МГ',c:'#5A63FF',g:'отлично',snils:false},
+  {n:'Артём Лаптев',i:'АЛ',c:'#7B5CFF',g:'хорошо',snils:true},
+];
+const JR=[['Анна Смирнова',[92,88,95,null],90],['Павел Ким',[96,90,97,88],112],['Юлия Дронова',[85,80,86,null],90],['Тимур Рахимов',[74,70,'н/д',null],62],['Олег Панов',[88,86,90,null],90]];
+const VED=[['Промежуточная аттестация, модуль 1','Сформирована 16 августа'],['Промежуточная аттестация, модуль 2','Сформирована 30 августа'],['Промежуточная аттестация, модуль 3','Сформирована 13 сентября'],['Промежуточная аттестация, модуль 4','Откроется после дедлайна 28 сентября']];
+let atab='streams', jmode='journal';
+const aBanner=()=>`<div class="tbanner">${ic('award')}<span>Учебный отдел</span><button onclick="logout()">Выйти</button></div>`;
+function adminScreen(){
+  if(atab==='journal') return journalScreen();
+  if(atab==='docs') return docsScreen();
+  if(atab==='notify') return notifyScreen();
+  return streamsScreen();
+}
+function streamsScreen(){
+  const counts=STAGES.map((_,k)=>S.roster.filter(x=>x===k).length);
+  const acts=['Проверить документы','Отметить оплату','Зачислить','Выдать доступ','Сбросить пароль'];
+  return `${aBanner()}
+    <header class="top" style="margin-top:14px"><div><small>Расписание, набор, зачисление, перевод</small><h1>Потоки</h1></div></header>
+    <div class="hscroll" style="margin-top:14px">${STREAMS.map((s,i)=>`<div class="card" style="flex:none;width:210px;padding:14px;${i===1?'box-shadow:0 0 0 2px var(--cobalt),var(--shadow)':''}"><b style="font-size:17px">${s.n}</b><div><span class="chip ${i===0?'chip-gold':i===1?'chip-cobalt':'chip-leaf'}" style="margin:6px 0">${s.s}</span></div><small class="muted">${s.d}<br>${s.c} слушателей</small></div>`).join('')}</div>
+    <section class="sect"><div class="sect-head"><h2>Расписание «Осень-2026»</h2><button class="muted" style="font-size:14px" onclick="toast('Откроется редактор расписания')">Изменить</button></div>
+      <div class="card" style="overflow:hidden">${MODS.map((m,i)=>`<div style="display:flex;gap:12px;padding:9px 16px;border-bottom:1px solid var(--line);font-size:14px"><span class="num" style="width:22px;color:var(--muted)">${m.final?'ИА':i+1}</span><span style="flex:1">${m.t}</span><span class="muted" style="white-space:nowrap">${['3 авг','17 авг','31 авг','14 сен','12 окт','26 окт','9 ноя','23 ноя','7 дек','21 дек','янв'][i]}</span></div>`).join('')}</div></section>
+    <section class="sect"><div class="sect-head"><h2>Набор и зачисление</h2></div>
+    <div class="kpi" style="margin-top:0"><div class="card"><b>${S.roster.length}</b><small>в работе</small></div><div class="card"><b>${counts[3]}</b><small>ждут доступа</small></div><div class="card"><b>${counts[4]}</b><small>учатся</small></div></div>
+    <div class="info">${ic('shield')}<span>Доступ выдаётся только после приказа о зачислении. Временный пароль показывается один раз, действует 72 часа и меняется слушателем при первом входе.</span></div>
+    <div style="margin-top:12px">${ROSTER.map((r,i)=>{const st=S.roster[i];
+      return `<div class="card stu"><div class="h">${ava(r)}<div><b>${r.n}</b><small>${r.e}</small></div></div>
+        <div class="pipe">${STAGES.map((_,k)=>`<i class="${k<=st?'on':''}"></i>`).join('')}</div>
+        <div class="act"><small>${STAGES[st]}</small><span style="display:flex;gap:6px">${st>=3?`<button class="btn btn-ghost" onclick="transfer(${i})" aria-label="Перевести в другой поток">${ic('swap')}</button>`:''}<button class="btn ${st===3?'btn-main':'btn-ghost'}" onclick="adminAct(${i})">${acts[st]}</button></span></div></div>`;}).join('')}</div>
+    <button class="btn btn-ghost btn-block" onclick="toast('Откроется анкета нового слушателя')">${ic('plus')}Добавить слушателя</button></section>`;
+}
+function transfer(i){
+  const r=ROSTER[i];
+  $('#layer').innerHTML=`<div class="layer" onclick="if(event.target===this)closeLayer()"><div class="sheet" role="dialog" aria-label="Перевод"><div class="grip"></div>
+    <h2>Перевод в другой поток</h2><p class="muted" style="margin:6px 0 14px;font-size:15px">${r.n}. Пройденные модули и оценки переносятся, оформляется приказ о переводе.</p>
+    ${STREAMS.filter((_,k)=>k!==1).map(s=>`<button class="card lv" onclick="closeLayer();toast('Приказ о переводе в «${s.n}» подготовлен')"><span class="tx">${s.n}<small>${s.s}, ${s.d}</small></span>${ic('chev')}</button>`).join('')}</div></div>`;
+}
+function journalScreen(){
+  return `${aBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Поток «Осень-2026»</small><h1>${jmode==='journal'?'Электронный журнал':'Ведомости'}</h1></div></header>
+  <div class="segs" style="margin-top:14px">${[['journal','Журнал'],['ved','Ведомости']].map(([k,l])=>`<button class="${jmode===k?'act':''}" onclick="jmode='${k}';render()">${l}</button>`).join('')}</div>
+  ${jmode==='journal'?`<div class="card jr-wrap" style="margin-top:14px"><table class="jr"><thead><tr><th>Слушатель</th>${[1,2,3,4].map(n=>`<th>М${n}</th>`).join('')}<th>Часы</th></tr></thead><tbody>
+    ${JR.map(([n,g,h])=>`<tr><td>${n}</td>${g.map(x=>`<td class="${x===null?'e':x==='н/д'?'b':x<75?'w':''}">${x===null?'—':x}</td>`).join('')}<td>${h}</td></tr>`).join('')}</tbody></table></div>
+    <p class="fine">Баллы промежуточной аттестации по модулям. «н/д» — работа не сдана, «—» — модуль ещё идёт. Часы учитываются по досмотру видео и сданным заданиям.</p>
+    <button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="toast('Журнал выгружен в Excel')">${ic('download')}Выгрузить журнал в Excel</button>`
+  :`<section class="sect" style="margin-top:14px">${VED.map(([a,b],k)=>`<div class="card pf">${ic(k<3?'file':'clock')}<div>${a}<small>${b}</small></div>${k<3?`<button class="muted" onclick="toast('Ведомость скачана в PDF')" aria-label="Скачать">${ic('download')}</button>`:''}</div>`).join('')}
+    <div class="card pf">${ic('flag')}<div>Протокол итоговой аттестации<small>Формируется после заседания комиссии</small></div></div></section>`}`;
+}
+function docsScreen(){
+  const iss=S.issued, fr=S.frdo||'none';
+  return `${aBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Поток «Весна-2026», выпуск</small><h1>Выпуск документов</h1></div></header>
+  <div class="kpi"><div class="card"><b>4</b><small>сдали аттестацию</small></div><div class="card"><b>${iss?4:0}</b><small>дипломов выпущено</small></div><div class="card"><b style="color:${fr==='loaded'?'var(--leaf-d)':'var(--ink)'}">${fr==='loaded'?'Да':'Нет'}</b><small>в ФИС ФРДО</small></div></div>
+  <section class="sect"><div class="sect-head"><h2>Выпускники</h2></div>
+    ${GRADS.map((g,k)=>`<div class="card stu"><div class="h">${ava(g)}<div><b>${g.n}</b><small>Итоговая аттестация: ${g.g}${iss?`, диплом № НЛ-2026-00${41+k}`:''}</small></div></div>
+      ${g.snils?'':`<div class="act"><small style="color:var(--tomato)">Нет СНИЛС — сведения не пройдут в реестр</small><button class="btn btn-ghost" onclick="toast('Запрос СНИЛС отправлен слушателю')">Запросить</button></div>`}</div>`).join('')}
+  </section>
+  <section class="sect"><div class="sect-head"><h2>Дипломы</h2></div>
+    <div class="card diploma"><div class="paper"><i style="top:14%"></i><i style="top:24%;right:30%"></i><i style="top:40%"></i><i style="top:48%;right:40%"></i><span class="qr"></span></div>
+      <div><h3>${iss?'Выпущено 4 диплома':'Диплом о профессиональной переподготовке'}</h3><small>${iss?'PDF с уникальными номерами и QR-кодами. Страница проверки по номеру уже работает.':'Номера присвоятся автоматически, на каждом — QR-код для проверки подлинности.'}</small></div></div>
+    ${iss?`<button class="btn btn-ghost btn-block" style="margin-top:10px" onclick="toast('Архив с дипломами скачан')">${ic('download')}Скачать все PDF</button>`:`<button class="btn btn-main btn-block" style="margin-top:10px" onclick="S.issued=true;save();render();toast('Дипломы выпущены')">Выпустить дипломы</button>`}
+  </section>
+  <section class="sect"><div class="sect-head"><h2>ФИС ФРДО</h2></div>
+    <div class="card" style="padding:16px">
+      <p style="margin:0 0 12px;font-size:15px">Сведения о выданных дипломах формируются файлом по шаблону реестра. Его загружает ответственный сотрудник в личном кабинете ФИС ФРДО.</p>
+      ${!iss?`<div class="status" style="margin:0">${ic('lock')}Сначала выпустите дипломы</div>`
+      :fr==='none'?`<button class="btn btn-main btn-block" onclick="S.frdo='file';save();render();toast('Файл сведений сформирован')">${ic('download')}Сформировать файл для ФИС ФРДО</button><p class="fine">Мария Гусева будет исключена из файла, пока не указан СНИЛС.</p>`
+      :fr==='file'?`<div class="file" style="margin-bottom:10px">${ic('file')}<span style="flex:1">frdo_vesna-2026.xlsx<br><small class="muted">3 записи из 4</small></span></div><button class="btn btn-ghost btn-block" onclick="S.frdo='loaded';save();render();toast('Отмечено как загруженное в реестр')">Отметить: загружено в реестр</button>`
+      :`<div class="status" style="margin:0;background:var(--leaf-soft)">${ic('check')}Загружено в реестр 21 сентября, 3 записи</div>`}
+    </div></section>`;
+}
+const NEV=[['newLesson','Открыт новый урок или модуль'],['deadline','Дедлайн через 2 дня'],['checked','Работа проверена'],['answer','Ответ на вопрос'],['live','Эфир через час'],['access','Доступ и смена пароля']];
+function notifyScreen(){
+  const N=S.notif||{newLesson:[1,1],deadline:[1,1],checked:[1,1],answer:[0,1],live:[0,1],access:[1,0]};
+  return `${aBanner()}
+  <header class="top" style="margin-top:14px"><div><small>Для всех потоков</small><h1>Уведомления</h1></div></header>
+  <section class="sect" style="margin-top:16px"><div class="sect-head"><h2>Каналы</h2></div>
+    <div class="card pf">${ic('mail')}<div>Почта<small>Отправитель noreply@nutrilogia.ru, домен подтверждён</small></div><span class="chip chip-leaf">Работает</span></div>
+    <div class="card pf">${ic('send')}<div>Telegram-бот @nutrilogia_bot<small>Подключили 34 из 38 слушателей потока</small></div><span class="chip chip-leaf">Работает</span></div></section>
+  <section class="sect"><div class="sect-head"><h2>События</h2><span class="muted">почта / Telegram</span></div>
+    <div class="card" style="overflow:hidden">${NEV.map(([k,l])=>`<div class="nrow"><span>${l}${k==='access'?'<small>Пароли и ссылки доступа — только на почту</small>':''}</span>
+      ${[0,1].map(c=>`<button class="tog ${N[k][c]?'on':''}" ${k==='access'&&c===1?'disabled':''} onclick="togN('${k}',${c})" aria-pressed="${!!N[k][c]}" aria-label="${c?'Telegram':'Почта'}"><i></i></button>`).join('')}</div>`).join('')}</div>
+    <p class="fine">Слушатель может отключить необязательные уведомления в профиле. Письма о доступе и документах отключить нельзя.</p></section>`;
+}
+function togN(k,c){ if(!S.notif) S.notif={newLesson:[1,1],deadline:[1,1],checked:[1,1],answer:[0,1],live:[0,1],access:[1,0]}; S.notif[k][c]=S.notif[k][c]?0:1; save(); const y=scrollY; render(); scrollTo(0,y); }
+
+let loginErr='', pw1='', pw2='';
+function loginScreen(){
+  return `<div class="login">
+    <div class="brand">НУТРИЛОГИЯ</div>
+    <div class="brand-sub">Спортивная нутрициология. Программа профессиональной переподготовки, 260 часов</div>
+    <div class="brand-track">${MODS.map((m,i)=>`<i style="flex:${m.h};${i<3?'background:var(--leaf)':i===3?'background:var(--cobalt)':''}"></i>`).join('')}</div>
+    <h2 style="margin-bottom:14px">Вход для слушателей</h2>
+    <label class="field"><span>Электронная почта</span><input id="lg" type="email" autocomplete="username" placeholder="Почта из договора"></label>
+    <label class="field"><span>Пароль</span><input id="lp" type="password" autocomplete="current-password" placeholder="Пароль из письма учебного отдела" onkeydown="if(event.key==='Enter')doLogin()"></label>
+    ${loginErr?`<div class="err">${loginErr}</div>`:''}
+    <button class="btn btn-main btn-block" onclick="doLogin()">Войти</button>
+    <button class="btn btn-block" style="margin-top:6px;color:var(--muted);font-weight:600" onclick="toast('Ссылка для сброса отправлена на почту')">Забыли пароль?</button>
+    <div class="info">${ic('shield')}<span>Самостоятельной регистрации нет. Доступ выдаёт учебный отдел после зачисления: временный пароль приходит на почту из договора и меняется при первом входе.</span></div>
+    <div class="demo"><small>Демо-вход без пароля</small><div class="row">
+      <button onclick="demoLogin('student')">Слушатель</button><button onclick="demoLogin('teacher')">Преподаватель</button><button onclick="demoLogin('admin')">Учебный отдел</button></div></div>
+  </div>`;
+}
+function setPwScreen(){
+  const r=[[pw1.length>=8,'Не короче 8 символов'],[/[0-9]/.test(pw1)&&/[a-zа-яё]/i.test(pw1),'Буквы и цифры'],[pw1.length>0&&pw1===pw2,'Пароли совпадают']];
+  const ok=r.every(x=>x[0])&&S.consent;
+  return `<div class="login">
+    <small class="muted">Первый вход</small>
+    <h1 style="margin:4px 0 8px">Придумайте свой пароль</h1>
+    <p class="muted" style="margin:0 0 18px;font-size:15px">Временный пароль из письма больше не сработает. Никому не передавайте доступ: по нему подтверждается, что учились именно вы.</p>
+    <label class="field"><span>Новый пароль</span><input type="password" autocomplete="new-password" value="${pw1}" oninput="pw1=this.value;rePw()"></label>
+    <label class="field"><span>Повторите пароль</span><input type="password" autocomplete="new-password" value="${pw2}" oninput="pw2=this.value;rePw()"></label>
+    <ul class="rules" id="rules">${r.map(x=>`<li class="${x[0]?'ok':''}">${ic('check')}${x[1]}</li>`).join('')}</ul>
+    <label class="consent"><input type="checkbox" ${S.consent?'checked':''} onchange="S.consent=this.checked;save();rePw()"><span>Даю согласие на обработку персональных данных, включая СНИЛС и паспортные данные, для выдачи диплома и передачи сведений в ФИС ФРДО</span></label>
+    <button class="btn btn-main btn-block" id="pwb" ${ok?'':'disabled'} onclick="S.pwdChanged=true;save();pw1=pw2='';render();toast('Пароль сохранён')">Сохранить и войти</button>
+  </div>`;
+}
+function rePw(){ const y=scrollY; const a=document.activeElement, idx=[...document.querySelectorAll('input')].indexOf(a); render(); const el=document.querySelectorAll('input')[idx]; if(el){el.focus(); if(el.type==='password') el.setSelectionRange(el.value.length,el.value.length);} scrollTo(0,y); }
+function genPw(){ const L='ABCDEFGHJKMNPQRSTUVWXYZ'; let t=''; for(let i=0;i<3;i++) t+=L[Math.floor(Math.random()*L.length)]; return `NL-${1000+Math.floor(Math.random()*9000)}-${t}`; }
+function adminAct(i){
+  const st=S.roster[i], r=ROSTER[i];
+  if(st<3){ S.roster[i]=st+1; save(); render(); toast(['Документы проверены','Оплата отмечена','Слушатель зачислен приказом'][st]); return; }
+  const p=genPw();
+  if(st===3){ S.roster[i]=4; save(); }
+  $('#layer').innerHTML=`<div class="layer center"><div class="modal" role="dialog" aria-label="Временный пароль">
+    <h2>${st===3?'Доступ выдан':'Пароль сброшен'}</h2>
+    <p class="muted" style="margin:6px 0 0;font-size:15px">${r.n}, ${r.e}</p>
+    <div class="pw">${p}</div>
+    <p class="fine" style="margin:0 0 14px">Пароль виден только сейчас и действует 72 часа. Не пересылайте его в мессенджерах — отправьте письмом на почту из договора.</p>
+    <div style="display:grid;gap:8px"><button class="btn btn-main" onclick="closeLayer();render();toast('Письмо с доступом отправлено')">Отправить на почту</button>
+      <button class="btn btn-ghost" onclick="closeLayer();render()">Закрыть</button></div></div></div>`;
+  render();
+}
+function doLogin(){
+  const e=($('#lg').value||'').trim().toLowerCase(), p=$('#lp').value||'';
+  if(!e||!p){ loginErr='Введите почту и пароль'; render(); return; }
+  if(!DEMO[e]){ loginErr='Такой слушатель не найден. Проверьте почту из договора или напишите в учебный отдел'; render(); return; }
+  loginErr=''; demoLogin(DEMO[e]);
+}
+function demoLogin(r){ S.auth=r; save(); loginErr=''; tab='home'; ttab='build'; atab='streams'; editing=false; sub=null; reviewing=null; teacher=r==='teacher'; render(); scrollTo(0,0); }
+function logout(){ S.auth=null; teacher=false; sub=null; reviewing=null; save(); render(); scrollTo(0,0); }
+/* ---------- рендер ---------- */
+const TABS=[['home','Главная','home'],['program','Программа','route'],['practice','Практика','runner'],['faculty','Кафедра','users'],['profile','Профиль','user']];
+const TTABS=[['build','Уроки','file'],['review','Проверка','inbox'],['stats','Успеваемость','chart'],['mail','Рассылка','bell']];
+const ATABS=[['streams','Потоки','users'],['journal','Журнал','grid'],['docs','Документы','award'],['notify','Уведомления','bell']];
+function render(){
+  const role=S.auth;
+  const detail = (role==='student' && sub==='lesson') || (role==='teacher' && ((ttab==='review'&&reviewing!==null) || (ttab==='build'&&editing)));
+  $('#app').classList.toggle('sub-mode', detail);
+  const bare = !role || (role==='student' && !S.pwdChanged);
+  $('#screen').innerHTML = !role ? loginScreen() : role==='admin' ? adminScreen() : role==='teacher' ? teacherScreen() : !S.pwdChanged ? setPwScreen() : sub==='lesson' ? lesson() : {home,program,practice,faculty,profile}[tab]();
+  $('#screen').style.padding = bare ? '0' : '';
+  const T = role==='teacher'?TTABS:role==='admin'?ATABS:TABS, cur = role==='teacher'?ttab:role==='admin'?atab:tab;
+  if(bare || detail){ $('#tabs').innerHTML=''; $('#tabs').style.display='none'; return; }
+  $('#tabs').style.display=''; $('#tabs').style.gridTemplateColumns=`repeat(${T.length},1fr)`;
+  $('#tabs').innerHTML = T.map(([k,l,i])=>`<button class="${cur===k?'act':''}" onclick="go('${k}')" aria-current="${cur===k?'page':'false'}">${ic(i)}${l}</button>`).join('');
+}
+function go(k){ if(S.auth==='teacher'){ttab=k;reviewing=null;editing=false;} else if(S.auth==='admin'){atab=k;} else {tab=k; sub=null;} render(); scrollTo(0,0); }
+
+/* ---------- действия ---------- */
+function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1800);}
+function floatXP(n,ev){ if(!ev) return; const f=document.createElement('div');f.className='float';f.textContent=`+${n}`;f.style.left=(ev.clientX-14)+'px';f.style.top=(ev.clientY-30)+'px';document.body.appendChild(f);setTimeout(()=>f.remove(),900);}
+function answerCase(i,ev){ if(S.caseAns!==null) return; S.caseAns=i; if(i===CASE.a){S.xp+=10; floatXP(10,ev);} save(); render(); }
+function openLesson(){ sub='lesson'; pane='notes'; render(); scrollTo(0,0); }
+function closeSub(){ sub=null; render(); scrollTo(0,0); }
+function setPane(k){ pane=k; const y=scrollY; render(); scrollTo(0,y); }
+function watch(){ if(S.watched) return; const p=$('#vp'); if(p) requestAnimationFrame(()=>p.style.width='100%'); setTimeout(()=>{S.watched=true;S.xp+=10;save();render();toast('Видео засчитано: +10 опыта');},2400); }
+function answerTest(i,j){ S.testAns[i]=j; save(); const y=scrollY; render(); scrollTo(0,y); }
+function refresh(){
+  const b=$('#sb'), h=$('#hint'); if(!b) return;
+  const ok=S.watched && [0,1].every(i=>S.testAns[i]===0) && (S.file||S.answer.trim().length>=30);
+  b.disabled=!ok; h.textContent=ok?'После проверки: +50 опыта':!(S.file||S.answer.trim().length>=30)?'Прикрепите файл или опишите решение':h.textContent;
+}
+function submitWork(){ S.submitted=true; S.xp+=20; save(); pane='task'; render(); toast('Работа отправлена на проверку'); }
+function openModule(i){
+  const st=modState(i), m=MODS[i];
+  if(st==='lock'){ toast(`Модуль откроется ${OPEN_DATES[i]}`); return; }
+  const names=m.lessons||Array.from({length:m.l},(_,k)=>`Урок ${k+1}`);
+  const done=st==='done'?m.l:S.curDone;
+  $('#layer').innerHTML=`<div class="layer" onclick="if(event.target===this)closeLayer()"><div class="sheet" role="dialog" aria-label="${m.t}"><div class="grip"></div>
+    <small class="muted">Модуль ${i+1}, ${TEACH[m.tc].n}</small><h2 style="margin:2px 0 14px">${m.t}</h2>
+    ${names.map((n,k)=>{const s=k<done?'done':k===done&&st==='cur'?'cur':'next';
+      return `<button class="card lv ${s}" ${s==='next'?'disabled':''} onclick="closeLayer();${s==='cur'?'openLesson()':"toast('Урок пройден: материалы доступны в архиве')"}"><span class="st">${s==='done'?ic('check'):k+1}</span><span class="tx">${n}<small>${s==='done'?'Пройден':s==='cur'?'Следующий урок':'Откроется после предыдущего'}</small></span></button>`;}).join('')}
+    <p class="fine">Модуль закрывается итоговым тестом и принятой практической работой.</p></div></div>`;
+}
+function closeLayer(){ $('#layer').innerHTML=''; }
+function teacherMode(on){ teacher=on; reviewing=null; sub=null; render(); scrollTo(0,0); }
+function decide(ok){ const i=reviewing; S.queue=S.queue.filter(x=>x!==i); reviewing=null; save(); render(); scrollTo(0,0); toast(ok?'Работа принята':'Отправлено на доработку'); }
+function resetDemo(){ S=fresh(); teacher=false; sub=null; save(); render(); toast('Демо-данные сброшены'); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLayer(); });
+render();
+</script>
+</body>
+</html>
