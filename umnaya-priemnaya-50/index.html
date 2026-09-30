@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Умная приёмная — коммерческое предложение</title>
+<style>@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  src: url(fonts/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8FqtjPQ.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/gNMZW3F-SZuj7zOT0IfSjTS16cPh9R-Zsg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 600;
+  src: url(fonts/gNMZW3F-SZuj7zOT0IfSjTS16cPhKxiZsg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Onest';
+  font-style: normal;
+  font-weight: 700;
+  src: url(fonts/gNMZW3F-SZuj7zOT0IfSjTS16cPhEhiZsg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Prata';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/6xKhdSpbNNCT-vWI.ttf) format('truetype');
+}</style>
+<style>
+/* Макет: документ-предложение в одну колонку ~72ch; изумрудная обложка, дальше светлые разделы
+   с узкой колонкой-меткой слева. Изумрудный = ИИ и выгода, бордовый = цена, действие, проблема. */
+:root{
+  --bg:#F5F3EF; --paper:#FFFFFF; --soft:#ECEFEC; --ink:#1C2320; --muted:#5A645E; --line:rgba(28,35,32,.13);
+  --em:#0E6B55; --em2:#1F9E7A; --em-soft:#E2F0EA; --em-deep:#0B4A3B; --on-em:#F3F7F5;
+  --bd:#7C1D34; --bd2:#A3334F; --bd-soft:#F7E7EB; --on-bd:#FFFFFF;
+  --display:'Prata',Georgia,'Times New Roman',serif;
+  --body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1311; --paper:#151C19; --soft:#1B2420; --ink:#E7EDEA; --muted:#9AA69F; --line:rgba(231,237,234,.13);
+  --em:#34B68E; --em2:#4FCBA3; --em-soft:rgba(52,182,142,.14); --em-deep:#0A3A2F; --on-em:#EAF3EF;
+  --bd:#C4526D; --bd2:#DA778E; --bd-soft:rgba(196,82,109,.16); --on-bd:#FFFFFF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1311; --paper:#151C19; --soft:#1B2420; --ink:#E7EDEA; --muted:#9AA69F; --line:rgba(231,237,234,.13);
+  --em:#34B68E; --em2:#4FCBA3; --em-soft:rgba(52,182,142,.14); --em-deep:#0A3A2F; --on-em:#EAF3EF;
+  --bd:#C4526D; --bd2:#DA778E; --bd-soft:rgba(196,82,109,.16); --on-bd:#FFFFFF; color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
+.ic{width:20px;height:20px;flex:none;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--em)}
+:focus-visible{outline:2px solid var(--em2);outline-offset:2px}
+
+/* обложка */
+.cover{background:var(--em-deep);color:var(--on-em);padding-inline:16px;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;right:-160px;top:-160px;width:520px;height:520px;border-radius:50%;border:56px solid rgba(255,255,255,.05);box-shadow:0 0 0 70px rgba(124,29,52,.35)}
+.cover-in{max-width:1000px;margin:0 auto;padding-block:48px 44px;position:relative}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.eyebrow i{width:28px;height:1px;background:currentColor;opacity:.6}
+.cover h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,6vw,62px);line-height:1.05;margin:18px 0 14px;text-wrap:balance;max-width:14ch}
+.cover p.lead{font-size:clamp(17px,2.2vw,20px);max-width:52ch;opacity:.88;margin:0}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.14);border-radius:16px;overflow:hidden;margin-top:36px}
+.facts div{background:var(--em-deep);padding:16px 18px}
+.facts b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1.1}
+.facts span{font-size:13px;opacity:.75}
+.cover-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:12px 20px;font-weight:600;text-decoration:none;border:1px solid transparent}
+.btn.pri{background:var(--bd);color:var(--on-bd)}
+.btn.pri:hover{background:var(--bd2)}
+.btn.line{border-color:rgba(255,255,255,.35);color:var(--on-em)}
+.btn.line:hover{background:rgba(255,255,255,.08)}
+
+/* разделы */
+.doc{max-width:1000px;margin:0 auto;padding-inline:16px;padding-block:8px 60px}
+.sec{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding-block:44px;border-bottom:1px solid var(--line)}
+.sec:last-child{border-bottom:0}
+.tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--bd2);font-weight:600;padding-top:10px}
+.sec h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,3.4vw,36px);line-height:1.15;margin:0 0 14px;text-wrap:balance}
+.sec p{max-width:66ch;margin:0 0 12px}
+.muted{color:var(--muted)}
+.sec>*,.body>*,.calc>*,.two>*,.steps>*{min-width:0}
+
+/* проблема → решение */
+.ps{display:grid;gap:10px;margin-top:18px}
+.ps-row{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);align-items:stretch;gap:0}
+.ps-row>div{padding:14px 16px;font-size:14.5px}
+.ps-row .p{background:var(--bd-soft);border-radius:14px 0 0 14px}
+.ps-row .s{background:var(--em-soft);border-radius:0 14px 14px 0}
+.ps-row .arr{display:grid;place-items:center;background:linear-gradient(90deg,var(--bd-soft) 50%,var(--em-soft) 50%);color:var(--muted);padding:0}
+.ps-row b{display:block;margin-bottom:3px}
+.ps-row .p b{color:var(--bd2)} .ps-row .s b{color:var(--em)}
+.ps-head{display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.ps-head span{padding:0 16px}
+
+/* шаги */
+.steps{list-style:none;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;counter-reset:s}
+.steps li{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;font-size:14.5px;counter-increment:s;display:flex;flex-direction:column;gap:6px}
+.steps li::before{content:counter(s);font-family:var(--mono);font-size:12px;color:var(--em);font-weight:600}
+.steps b{font-weight:600}
+
+/* каналы */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+.box h3{font-size:17px;margin:8px 0 6px;font-weight:600}
+.box p{font-size:14.5px;color:var(--muted);margin:0}
+.box .ic{color:var(--em)}
+.code{margin-top:12px;background:var(--soft);border-radius:10px;padding:10px 12px;font-family:var(--mono);font-size:12px;overflow-x:auto;white-space:pre}
+.note{margin-top:14px;display:flex;gap:10px;align-items:flex-start;font-size:14.5px;background:var(--em-soft);border-radius:12px;padding:12px 14px}
+.note .ic{color:var(--em);margin-top:2px}
+
+/* списки-метки */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pills span{border:1px solid var(--line);background:var(--paper);border-radius:99px;padding:6px 14px;font-size:14px;display:inline-flex;gap:8px;align-items:center}
+.pills .ic{width:16px;height:16px;color:var(--em)}
+
+/* таблицы */
+.tw{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--soft)}
+td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--mono);white-space:nowrap}
+td .price{color:var(--bd2);font-weight:600}
+.cmp td:nth-child(2){color:var(--bd2)} .cmp td:nth-child(3){color:var(--em);font-weight:600}
+.cmp td:first-child{color:var(--ink)}
+
+/* калькулятор */
+.calc{margin-top:20px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.field{display:grid;gap:6px;margin-bottom:14px}
+.field label{font-size:13.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px}
+.field output{font-family:var(--mono);color:var(--ink);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--em)}
+.res{display:grid;gap:12px;align-content:start}
+.res .r{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px;font-size:14.5px}
+.res .r b{font-family:var(--mono);font-weight:600}
+.res .big{background:var(--em-soft);border-radius:14px;padding:14px 16px}
+.res .big small{display:block;color:var(--muted);font-size:13px}
+.res .big b{font-family:var(--display);font-weight:400;font-size:34px;color:var(--em);line-height:1.2}
+.res .big.neg{background:var(--bd-soft)} .res .big.neg b{color:var(--bd2)}
+.res .cap{font-size:12.5px;color:var(--muted)}
+
+/* сроки */
+.tl{margin-top:18px;display:grid;gap:0;border-left:2px solid var(--em-soft);padding-left:20px}
+.tl div{position:relative;padding-bottom:16px}
+.tl div::before{content:"";position:absolute;left:-27px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--em);border:3px solid var(--bg)}
+.tl div:last-child::before{background:var(--bd)}
+.tl .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+
+.final{background:var(--bd);color:var(--on-bd);border-radius:20px;padding:28px;display:grid;gap:12px;margin-top:8px}
+.final h2{color:var(--on-bd);margin:0}
+.final p{margin:0;opacity:.9}
+.final .btn{background:var(--on-bd);color:var(--bd);justify-self:start}
+.contact{font-family:var(--mono);font-size:15px}
+
+@media (max-width:820px){
+  .sec{grid-template-columns:1fr;gap:6px;padding-block:34px}
+  .tag{padding-top:0}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two,.calc{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .steps{grid-template-columns:1fr}
+  .ps-row,.ps-head{grid-template-columns:1fr}
+  .ps-head{display:none}
+  .ps-row .p{border-radius:14px 14px 0 0}.ps-row .s{border-radius:0 0 14px 14px}
+  .ps-row .arr{height:28px;background:linear-gradient(180deg,var(--bd-soft) 50%,var(--em-soft) 50%);transform:none}
+  .ps-row .arr svg{transform:rotate(90deg)}
+}
+</style>
+</head>
+<body>
+
+
+<header class="cover">
+  <div class="cover-in">
+    <div class="eyebrow">Коммерческое предложение <i></i> НЭЙРУ</div>
+    <h1>Умная приёмная</h1>
+    <p class="lead">Городской сервис быстрого реагирования на обращения граждан. Нейроконсультант отвечает жителям на сайте администрации и в веб-версии: сразу, круглосуточно, по вашим регламентам и законам.</p>
+    <div class="facts">
+      <div><b>5 с</b><span>среднее время ответа</span></div>
+      <div><b>24/7</b><span>без выходных и очередей</span></div>
+      <div><b>2 недели</b><span>от материалов до запуска</span></div>
+      <div><b>37 500&nbsp;₽</b><span>подписка в месяц, от</span></div>
+    </div>
+    <div class="cover-cta">
+      <a class="btn pri" href="prototype.html">Открыть прототип</a>
+      <a class="btn line" href="#budget">Стоимость</a>
+    </div>
+  </div>
+</header>
+
+<main class="doc">
+
+  <section class="sec">
+    <div class="tag">Что это</div>
+    <div class="body">
+      <h2>Нейросеть, обученная на ответах вашего учреждения</h2>
+      <p>Умная приёмная — инструмент для государственных и муниципальных органов, который берёт на себя типовые вопросы жителей: социальные услуги, здравоохранение, образование, ЖКХ, транспорт, безопасность.</p>
+      <p>Житель пишет или говорит своими словами. Сервис отвечает по базе вашего учреждения и указывает источник. Если нужно что-то починить или проверить, он оформляет обращение и передаёт его в ответственное ведомство со сроком. Если вопрос сложный, подключает специалиста.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Задача</div>
+    <div class="body">
+      <h2>Что меняется для жителей и для администрации</h2>
+      <div class="ps">
+        <div class="ps-head"><span>Сегодня</span><span></span><span>С Умной приёмной</span></div>
+        <div class="ps-row"><div class="p"><b>Долгое ожидание ответа</b>Ответ на обращение занимает от минут до нескольких дней.</div><div class="arr" data-ic="arrow"></div><div class="s"><b>Ответ за 5 секунд</b>Типовые вопросы закрываются сразу, без участия сотрудника.</div></div>
+        <div class="ps-row"><div class="p"><b>Перегруженный персонал</b>Поток однотипных вопросов снижает качество и полноту ответов.</div><div class="arr" data-ic="arrow"></div><div class="s"><b>Круглосуточно, без лимита диалогов</b>Сервис сортирует обращения и всегда отвечает вежливо и подробно.</div></div>
+        <div class="ps-row"><div class="p"><b>Нет системной картины</b>Обращения трудно собрать и проанализировать.</div><div class="arr" data-ic="arrow"></div><div class="s"><b>Статистика по темам и районам</b>Видно, где проблемы и что беспокоит жителей, — для управленческих решений.</div></div>
+        <div class="ps-row"><div class="p"><b>Раздражение от автоинформатора</b>Меню из пунктов не учитывает реальных вопросов.</div><div class="arr" data-ic="arrow"></div><div class="s"><b>Разговор своими словами</b>Житель описывает проблему голосом или текстом и сразу получает решение.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Как работает</div>
+    <div class="body">
+      <h2>Путь обращения</h2>
+      <ol class="steps">
+        <li><b>Житель спрашивает</b>На сайте администрации или в веб-версии, текстом или голосом.</li>
+        <li><b>ИИ отвечает</b>По регламентам и законам учреждения, со ссылкой на пункт документа.</li>
+        <li><b>Обращение уходит в ведомство</b>Если нужна работа на месте: номер, адрес, срок, уведомление ответственным.</li>
+        <li><b>Контроль в панели</b>Статусы, просрочки, ответы специалистов и аналитика для руководителя.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Где работает</div>
+    <div class="body">
+      <h2>Только веб: сайт учреждения и отдельная веб-версия</h2>
+      <p>Жителю не нужно ничего устанавливать и регистрироваться. Переписка не проходит через сторонние мессенджеры.</p>
+      <div class="two">
+        <div class="box"><span data-ic="globe"></span><h3>Виджет на сайте</h3><p>Кнопка «Задать вопрос» на действующем сайте учреждения. Подключается одной строкой кода, сайт дорабатывать не нужно.</p>
+          <div class="code">&lt;script src="https://priem.example.ru/widget.js"
+        data-org="gorodskoy-okrug" async&gt;&lt;/script&gt;</div></div>
+        <div class="box"><span data-ic="phone"></span><h3>Веб-версия</h3><p>Отдельная страница приёмной с оформлением в стиле учреждения и персонажем-консультантом. На телефоне добавляется на главный экран как приложение. Ссылку и QR-код можно разместить на остановках, в квитанциях ЖКХ, в поликлиниках.</p></div>
+      </div>
+      <div class="note"><span data-ic="shield"></span><span>Все данные хранятся на сервере в России. Для ответов используются российские языковые модели; перед обработкой персональные данные жителя скрываются.</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Сферы</div>
+    <div class="body">
+      <h2>Где применяется</h2>
+      <div class="pills">
+        <span>Учебные учреждения</span><span>Медицинские учреждения</span><span>ЖКХ</span><span>Социальные службы</span><span>Транспорт</span><span>Городская среда</span><span>Администрация</span>
+      </div>
+      <h2 style="margin-top:32px">На чём обучается</h2>
+      <p>Сервис работает на базе, которую предоставляет учреждение, и отвечает только по ней:</p>
+      <div class="pills"><span>Регламенты</span><span>Справочная информация</span><span>Ответы на частые вопросы</span><span>Кодексы</span><span>Законы</span></div>
+      <p class="muted" style="margin-top:14px">Новый документ подключается за минуты. Вопросы, на которые в базе нет ответа, попадают в отдельный список, чтобы методист дополнил базу.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Интеграции</div>
+    <div class="body">
+      <h2>Встраивается в существующие системы</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Система</th><th>Что передаётся</th></tr></thead>
+        <tbody>
+          <tr><td>Система документооборота учреждения</td><td>Письменные обращения для регистрации — по запросу</td></tr>
+          <tr><td>Информационные системы учреждения</td><td>Обращения и статусы по API, по согласованию</td></tr>
+          <tr><td>Любой сайт учреждения</td><td>Виджет без доработки сайта и дополнительных вложений</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section class="sec" id="budget">
+    <div class="tag">Стоимость</div>
+    <div class="body">
+      <h2>Внедрение и подписка</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Внедрение</th><th>Срок</th><th class="num">Стоимость</th></tr></thead>
+        <tbody>
+          <tr><td>Запуск под ключ: сервер в России, база знаний до 500 000 знаков, проверка на 100 контрольных вопросах, веб-версия и виджет в стиле учреждения, ведомства и сроки, обучение сотрудников, пилот</td><td style="white-space:nowrap">2 недели</td><td class="num"><span class="price">410 000 ₽</span></td></tr>
+          <tr><td>Каждые следующие 100 000 знаков базы знаний</td><td style="white-space:nowrap">+1 день</td><td class="num">7 500 ₽</td></tr>
+          <tr><td>Интеграция с документооборотом учреждения</td><td style="white-space:nowrap">по запросу</td><td class="num">по запросу</td></tr>
+        </tbody>
+      </table></div>
+      <div class="tw" style="margin-top:14px"><table>
+        <thead><tr><th>Подписка</th><th class="num">Обращений в месяц</th><th class="num">Цена в месяц</th><th class="num">За одно обращение</th></tr></thead>
+        <tbody><tr><td><b>Старт</b></td><td class="num">до 1 000</td><td class="num"><span class="price">37 500 ₽</span></td><td class="num">37,5 ₽</td></tr><tr><td><b>Стандарт</b></td><td class="num">до 3 000</td><td class="num"><span class="price">53 000 ₽</span></td><td class="num">17,7 ₽</td></tr><tr><td><b>Город</b></td><td class="num">до 10 000</td><td class="num"><span class="price">109 000 ₽</span></td><td class="num">10,9 ₽</td></tr>
+          <tr><td>Сверх пакета</td><td class="num">каждое</td><td class="num"></td><td class="num"><span class="price">8 ₽</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="muted" style="margin-top:12px">Обращение — один диалог жителя с приёмной в течение суток. В подписку входят сервер и хранение данных в России, работа языковых моделей и распознавания голоса, уведомления, техническая поддержка и ежемесячное дополнение базы знаний по вопросам, на которые ИИ не нашёл ответа. Цены указаны без НДС.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Экономия</div>
+    <div class="body">
+      <h2>Расчёт экономии</h2>
+      <p>После внедрения учреждение платит фиксированную подписку. Типовые вопросы закрывает ИИ, а сотрудники занимаются сложными случаями и обращениями, которые требуют решения.</p>
+      <div class="tw"><table class="cmp">
+        <thead><tr><th>Показатель</th><th>Сейчас</th><th>С сервисом</th></tr></thead>
+        <tbody>
+          <tr><td>Скорость ответа</td><td>от минут до суток</td><td>секунды</td></tr>
+          <tr><td>Время работы</td><td>8 часов в рабочие дни</td><td>круглосуточно, без выходных</td></tr>
+          <tr><td>Одновременные диалоги</td><td>один на сотрудника</td><td>без ограничений</td></tr>
+          <tr><td>Новые правила и регламенты</td><td>обучение сотрудников</td><td>новый документ в базе за минуты</td></tr>
+          <tr><td>Контроль качества ответа</td><td>выборочно</td><td>каждый ответ со ссылкой на источник</td></tr>
+          <tr><td>Картина обращений</td><td>ручные отчёты</td><td>статистика по темам и районам в панели</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="calc" aria-label="Калькулятор экономии">
+        <div>
+          <div class="field"><label for="c-req">Обращений жителей в месяц <output id="o-req"></output></label><input id="c-req" type="range" min="500" max="15000" step="500" value="3000"></div>
+          <div class="field"><label for="c-ops">Операторов на типовых вопросах <output id="o-ops"></output></label><input id="c-ops" type="range" min="1" max="15" step="1" value="3"></div>
+          <div class="field"><label for="c-sal">Зарплата оператора в месяц <output id="o-sal"></output></label><input id="c-sal" type="range" min="25000" max="120000" step="5000" value="50000"></div>
+          <div class="field"><label for="c-share">Доля вопросов, которые закрывает ИИ <output id="o-share"></output></label><input id="c-share" type="range" min="50" max="95" step="5" value="80"></div>
+        </div>
+        <div class="res" aria-live="polite">
+          <div class="r"><span>Операторы сейчас, в год</span><b id="r-now"></b></div>
+          <div class="r"><span>Подписка: <span id="r-tier"></span></span><b id="r-m"></b></div>
+          <div class="r"><span>Сервис в первый год, с внедрением</span><b id="r-y1"></b></div>
+          <div class="r"><span>Специалисты на сложные вопросы</span><b id="r-rest"></b></div>
+          <div class="big" id="r-box"><small>Экономия в первый год</small><b id="r-eco"></b></div>
+          <div class="r"><span>Со второго года, в год</span><b id="r-y2"></b></div>
+          <p class="cap">Зарплата учтена с взносами 30,2 %. Сервис в первый год: внедрение 410 000 ₽ и 12 месяцев подписки; выбирается самый выгодный пакет для указанного числа обращений. Расчёт ориентировочный.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Срок</div>
+    <div class="body">
+      <h2>Запуск за 2 недели после получения материалов</h2>
+      <div class="tl">
+        <div><span class="d">Дни 1–2</span><br>Сервер в России, домен, настройка ведомств и тем обращений.</div>
+        <div><span class="d">Дни 3–5</span><br>Загрузка регламентов, справочников и законов; проверка на 100 контрольных вопросах.</div>
+        <div><span class="d">Дни 6–9</span><br>Веб-версия и виджет в стиле учреждения, маршрутизация и сроки, обучение операторов за 1 день.</div>
+        <div><span class="d">Дни 10–12</span><br>Пилот на сотрудниках; интеграция с документооборотом — по запросу.</div>
+        <div><span class="d">Дни 13–14</span><br>Запуск для жителей и дополнение базы по реальным вопросам.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="tag">Следующий шаг</div>
+    <div class="body">
+      <div class="final">
+        <h2>Покажем приёмную на ваших документах</h2>
+        <p>Пришлите 3–5 регламентов или список частых вопросов — за 3 рабочих дня соберём демонстрационную версию с вашим оформлением.</p>
+        <p>От учреждения: база документов, список ведомств и ответственных, сроки ответа по темам, логотип.</p>
+        <p class="contact">НЭЙРУ — разработчик Умной приёмной</p>
+        <a class="btn" href="prototype.html">Посмотреть прототип</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const ICONS={
+  arrow:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+  phone:'<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',
+  shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>'
+};
+document.querySelectorAll('[data-ic]').forEach(e=>{e.insertAdjacentHTML('afterbegin',`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICONS[e.dataset.ic]||''}</svg>`)});
+
+const $=id=>document.getElementById(id);
+const rub=n=>(n<0?'−':'')+Math.round(Math.abs(n)).toLocaleString('ru-RU')+' ₽';
+const IMPL=410000, OVER=8, TIERS=[['Старт',1000,37500],['Стандарт',3000,53000],['Город',10000,109000]];
+function best(n){let b=null;for(const [name,q,p] of TIERS){const c=p+Math.max(0,n-q)*OVER;if(!b||c<b.c)b={name,c}}return b}
+function calc(){
+  const req=+$('c-req').value, ops=+$('c-ops').value, sal=+$('c-sal').value, share=+$('c-share').value/100;
+  $('o-req').textContent=req.toLocaleString('ru-RU');
+  $('o-ops').textContent=ops;
+  $('o-sal').textContent=rub(sal);
+  $('o-share').textContent=Math.round(share*100)+' %';
+  const staffYear=ops*sal*1.302*12;
+  const restYear=staffYear*(1-share);            // остаются специалисты на сложные вопросы
+  const t=best(req), subYear=t.c*12, y1=IMPL+subYear;
+  const eco1=staffYear-(y1+restYear), eco2=staffYear-(subYear+restYear);
+  $('r-now').textContent=rub(staffYear);
+  $('r-tier').textContent='«'+t.name+'»';
+  $('r-m').textContent=rub(t.c)+' / мес';
+  $('r-y1').textContent=rub(y1);
+  $('r-rest').textContent=rub(restYear);
+  $('r-eco').textContent=rub(eco1);
+  $('r-y2').textContent=rub(eco2);
+  $('r-box').classList.toggle('neg',eco1<0);
+}
+document.querySelectorAll('.calc input').forEach(i=>i.addEventListener('input',calc));
+calc();
+</script>
+
+</body>
+</html>
