@@ -40,7 +40,40 @@
   font-style: normal;
   font-weight: 400;
   src: url(6xKhdSpbNNCT-vWI.ttf) format('truetype');
-}</style>
+}/* масштабирование */
+.scale-fig{margin:22px 0 0;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px 14px 12px}
+.scale-fig svg{width:100%;height:auto;display:block}
+.scale-fig .core{fill:#7C1D34}
+.scale-fig .r1{fill:#0B4A3B}
+.scale-fig .r2{fill:#0E6B55}
+.scale-fig .r3{fill:#178A69}
+.scale-fig .r4{fill:#E2F0EA;stroke:#A3334F;stroke-width:1.5}
+.scale-fig .lbl text{text-anchor:middle;font-family:var(--body)}
+.scale-fig .nm{font-family:var(--display)!important;font-size:19px;fill:#F3F7F5}
+.scale-fig .cp{font-size:12px;fill:#F3F7F5;opacity:.88}
+
+.scale-fig text.l4{fill:#1C2320;opacity:1}
+.scale-fig .core-t{font-size:12px;font-weight:600;fill:#FFFFFF}
+.scale-fig .dot{stroke-width:1.5}
+.scale-fig .d1{fill:#FFFFFF;stroke:#0B4A3B}
+.scale-fig .d4{fill:#FFFFFF;stroke:#0E6B55}
+.scale-fig .lnk{stroke:#FFFFFF;stroke-width:1;opacity:.2}
+.scale-fig figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:8px}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.levels>*{min-width:0}
+.lv{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;border-top:5px solid var(--em)}
+.lv.l1{border-top-color:var(--em-deep)} .lv.l2{border-top-color:var(--em)} .lv.l3{border-top-color:var(--em2)} .lv.l4{border-top-color:var(--bd2)}
+.lv-n{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.lv h3{font-family:var(--display);font-weight:400;font-size:21px;margin:4px 0 10px}
+.lv dl{margin:0;display:grid;gap:4px;font-size:13.5px}
+.lv dt{color:var(--bd2);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.lv dd{margin:0}
+.common{margin-top:14px;background:var(--em-soft);border-radius:14px;padding:14px 18px;font-size:14.5px}
+.common b{color:var(--em)}
+.common ul{margin:6px 0 0;padding-left:20px;display:grid;gap:3px}
+@media (max-width:980px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.levels{grid-template-columns:1fr}.scale-fig{padding:10px 6px 8px}.scale-fig .nm{font-size:27px;transform:translateY(9px)}.scale-fig .cp{display:none}.scale-fig .core-t{font-size:15px}}
+</style>
 <style>
 /* Макет: документ-предложение в одну колонку ~72ch; изумрудная обложка, дальше светлые разделы
    с узкой колонкой-меткой слева. Изумрудный = ИИ и выгода, бордовый = цена, действие, проблема. */
@@ -363,6 +396,84 @@ input[type=range]{width:100%;accent-color:var(--em)}
     </div>
   </section>
 
+  <section class="sec" id="scale">
+    <div class="tag">Масштаб</div>
+    <div class="body">
+      <h2>От одного учреждения до страны на одной платформе</h2>
+      <p>Умная приёмная начинается с одного учреждения и растёт без смены системы. Каждый новый уровень подключается к тому же ядру: база знаний, ответы и аналитика накапливаются, а не создаются заново.</p>
+      <figure class="scale-fig">
+        <svg viewBox="0 0 760 392" role="img" aria-labelledby="scale-t">
+          <title id="scale-t">Четыре уровня масштабирования вокруг единой платформы: учреждение, муниципалитет, регион, страна</title>
+          <path class="r4" d="M20 372 A360 360 0 0 1 740 372 L665 372 A285 285 0 0 0 95 372 Z"/>
+          <path class="r3" d="M95 372 A285 285 0 0 1 665 372 L590 372 A210 210 0 0 0 170 372 Z"/>
+          <path class="r2" d="M170 372 A210 210 0 0 1 590 372 L515 372 A135 135 0 0 0 245 372 Z"/>
+          <path class="r1" d="M245 372 A135 135 0 0 1 515 372 L442 372 A62 62 0 0 0 318 372 Z"/>
+          <path class="core" d="M318 372 A62 62 0 0 1 442 372 Z"/>
+          <g id="scale-links"></g>
+          <g id="scale-dots"></g>
+          <g class="lbl">
+            <text x="380" y="342" class="core-t">Единая</text>
+            <text x="380" y="360" class="core-t">платформа</text>
+            <text x="380" y="263" class="nm">Учреждение</text><text x="380" y="281" class="cp">школа · поликлиника · МФЦ</text>
+            <text x="380" y="190" class="nm">Муниципалитет</text><text x="380" y="208" class="cp">одно окно для всего города</text>
+            <text x="380" y="115" class="nm">Регион</text><text x="380" y="133" class="cp">все муниципалитеты и министерства</text>
+            <text x="380" y="40" class="nm l4">Страна</text><text x="380" y="58" class="cp l4">регионы как узлы одной сети</text>
+          </g>
+        </svg>
+        <figcaption>Каждое кольцо включает предыдущее. Точки — подключённые учреждения и ведомства.</figcaption>
+      </figure>
+
+      <div class="levels">
+        <article class="lv l1">
+          <span class="lv-n">Уровень 1</span>
+          <h3>Учреждение</h3>
+          <dl>
+            <dt>Кто</dt><dd>Одна организация: школа, поликлиника, управляющая компания, МФЦ, отдел администрации.</dd>
+            <dt>Что получает</dt><dd>Собственную базу знаний, веб-версию и виджет на сайте, панель операторов.</dd>
+            <dt>Запуск</dt><dd>2 недели.</dd>
+          </dl>
+        </article>
+        <article class="lv l2">
+          <span class="lv-n">Уровень 2</span>
+          <h3>Муниципалитет</h3>
+          <dl>
+            <dt>Кто</dt><dd>Администрация и подведомственные учреждения города или района.</dd>
+            <dt>Что получает</dt><dd>Одно окно для жителя: ИИ сам направляет вопрос в нужное учреждение. Общая база городских регламентов и сводка по районам для главы.</dd>
+            <dt>Запуск</dt><dd>Каждое следующее учреждение — за несколько дней: общая база уже готова.</dd>
+          </dl>
+        </article>
+        <article class="lv l3">
+          <span class="lv-n">Уровень 3</span>
+          <h3>Регион</h3>
+          <dl>
+            <dt>Кто</dt><dd>Все муниципалитеты и региональные министерства.</dd>
+            <dt>Что получает</dt><dd>Региональные нормы и меры поддержки в общей базе, типовой шаблон подключения муниципалитета, карта обращений по темам и территориям для правительства региона.</dd>
+            <dt>Размещение</dt><dd>Региональный ЦОД или облако в России.</dd>
+          </dl>
+        </article>
+        <article class="lv l4">
+          <span class="lv-n">Уровень 4</span>
+          <h3>Страна</h3>
+          <dl>
+            <dt>Кто</dt><dd>Федеральный оператор и регионы как узлы одной сети.</dd>
+            <dt>Что получает</dt><dd>Общую базу федеральных законов и типовых ответов, обмен лучшими ответами между регионами, мониторинг тем обращений по стране.</dd>
+            <dt>Размещение</dt><dd>Защищённый контур заказчика.</dd>
+          </dl>
+        </article>
+      </div>
+
+      <div class="common">
+        <b>На всех уровнях</b>
+        <ul>
+          <li>Одна платформа и одни стандарты ответов со ссылкой на источник.</li>
+          <li>Данные хранятся в России; наверх передаётся статистика без персональных данных.</li>
+          <li>Каждый уровень видит свою сводку и может спуститься до конкретного учреждения.</li>
+          <li>Стоимость подключения уровней 2–4 рассчитывается индивидуально.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="sec">
     <div class="tag">Следующий шаг</div>
     <div class="body">
@@ -411,6 +522,25 @@ function calc(){
 }
 document.querySelectorAll('.calc input').forEach(i=>i.addEventListener('input',calc));
 calc();
+/* точки-учреждения на кольцах схемы масштабирования */
+(function(){
+  const g=document.getElementById('scale-dots'), L=document.getElementById('scale-links'); if(!g)return;
+  const cx=380, cy=372, NS='http://www.w3.org/2000/svg';
+  const rings=[[98,4,'d1'],[172,8,'d1'],[247,12,'d1'],[322,18,'d4']];
+  for(const [r,n,c] of rings){
+    const angs=[];
+    for(let i=0;i<n;i++){ // половина точек слева, половина справа; верх оставлен под подписи
+      const half=n/2, k=i%half, side=i<half?0:1, t=(k+.5)/half;
+      const a=side===0? 12+t*(62-12) : 118+t*(168-118);
+      angs.push(a);
+    }
+    for(const a of angs){
+      const rad=a*Math.PI/180, x=cx+r*Math.cos(rad), y=cy-r*Math.sin(rad);
+      const ln=document.createElementNS(NS,'line'); ln.setAttribute('x1',cx); ln.setAttribute('y1',cy); ln.setAttribute('x2',x); ln.setAttribute('y2',y); ln.setAttribute('class','lnk'); L.appendChild(ln);
+      const d=document.createElementNS(NS,'circle'); d.setAttribute('cx',x); d.setAttribute('cy',y); d.setAttribute('r',r>300?5:4.5); d.setAttribute('class','dot '+c); g.appendChild(d);
+    }
+  }
+})();
 </script>
 
 </body>
