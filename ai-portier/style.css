@@ -732,3 +732,12 @@ html[lang^=zh] .hero h1{font-size:clamp(42px,5.1vw,73px);letter-spacing:-.05em}h
 .quote-promo .quote-icon { background: linear-gradient(#ba7df5, #6714df); color: white; }
 .quote-result dl div { align-items: center; }
 .quote-result dd strong { font-size: clamp(19px, 2.4vw, 30px); }
+
+.quote-form { align-items: center; }
+.quote-form input, .quote-form select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 46px;
+  font: inherit;
+  padding-block: 0;
+}
