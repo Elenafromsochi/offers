@@ -674,3 +674,27 @@ html[lang^=zh] .hero h1{font-size:clamp(42px,5.1vw,73px);letter-spacing:-.05em}h
 @media (max-width: 680px) {
   .price-grid, .quote-form, .quote-result dl { grid-template-columns: 1fr; }
 }
+.price-grid { grid-template-columns: 1.35fr 1fr; }
+.price-grid article {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: #ffffff69;
+  box-shadow: inset 0 0 22px #ffffff85;
+}
+.price-grid h3 { display: flex; align-items: center; gap: 14px; margin: 0; }
+.price-grid h3 span {
+  display: grid; place-items: center;
+  width: 48px; height: 48px; flex: 0 0 48px;
+  border-radius: 14px; color: #fff;
+  background: linear-gradient(#ba7df5, #6714df);
+}
+.price-tiers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.price-panel { padding: 14px; margin: 0; border-radius: 16px; background: #ffffff9c; }
+.price-panel:last-child { margin-top: auto; }
+.price-tiers .price-panel { margin: 0; }
+.price-panel dl { margin-bottom: 0; }
+.price-special { border: 1px solid #b080f3; background: #f5ebff; }
+.price-special strong { display: inline-block; color: #6519d6; }
+@media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; } }
+@media (max-width: 530px) { .price-tiers { grid-template-columns: 1fr; } }
