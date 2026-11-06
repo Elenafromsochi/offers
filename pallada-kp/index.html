@@ -1,0 +1,141 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Паллада · Генератор КП</title><style>
+:root{--nav:#153857;--deep:#102a43;--gold:#f2cf60;--ink:#162d42;--muted:#5b6c7e;--line:#dce4ec;--bg:#f2f5f8}*{box-sizing:border-box}body{margin:0;font:15px system-ui,sans-serif;background:var(--bg);color:var(--ink)}header{height:75px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;gap:12px}header img{width:181px;display:block}small,.muted{color:var(--muted)}.shell{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:calc(100vh - 75px)}aside{background:var(--deep);padding:24px 14px;color:white}aside small{color:#b8cada;display:block;margin:8px 12px 15px;letter-spacing:.13em}button,.button{font:inherit;font-weight:650;cursor:pointer;border:1px solid var(--line);background:white;color:var(--ink);border-radius:7px;padding:10px 15px;display:inline-block;text-decoration:none}button:hover,.button:hover{filter:brightness(.95)}nav button{display:block;width:100%;text-align:left;background:transparent;border:0;color:#e1edf7;margin:4px 0}nav button.active{background:#284d6c;color:#fff;border-left:3px solid var(--gold)}main{padding:30px;max-width:1450px;width:100%}.hero{background:linear-gradient(105deg,#102a43,#1a486a);color:white;padding:29px 32px;border-radius:12px;margin-bottom:21px;position:relative;overflow:hidden}.hero:after{content:'';position:absolute;inset:0 0 0 60%;pointer-events:none;background:repeating-linear-gradient(135deg,transparent 0 24px,#ffffff14 25px 26px)}.eyebrow{font-size:11px;letter-spacing:.14em;font-weight:800;color:var(--gold)}h1{margin:8px 0;font-size:clamp(26px,4vw,37px);line-height:1.1}h2{font-size:20px;margin:0 0 12px}p{line-height:1.55;margin:8px 0 15px}.hero p{color:#d7e5f2;margin-bottom:0}.cols{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:17px}.card{background:white;border:1px solid var(--line);border-radius:11px;padding:21px;margin-bottom:16px;min-width:0}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{justify-content:space-between}.primary{background:var(--gold);border-color:var(--gold)}label{font-weight:650;display:block;margin:12px 0 6px}input,textarea,select{font:inherit;padding:10px;border:1px solid #bfcddd;border-radius:7px;background:white;color:var(--ink);max-width:100%}input:not([type=file]),textarea,select{width:100%}textarea{min-height:130px;resize:vertical}.badge{padding:5px 9px;border-radius:5px;background:#e8eef4;font-size:12px;font-weight:700}.step{padding:13px 0;border-top:1px solid var(--line)}.step b{color:#24567f;margin-right:8px}.list{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left}th,td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:12px;background:#edf2f7}.num{white-space:nowrap}.notice{background:#fff6da;border-radius:7px;padding:10px 12px;margin:12px 0}.file{margin:12px 0}.total{text-align:right;font-size:20px;font-weight:800}#result .docbrand{max-width:160px}#status{min-height:20px;margin:8px 0}section[hidden]{display:none}@media(max-width:820px){.shell,.cols{grid-template-columns:1fr}aside{padding:7px}aside small{display:none}nav{display:flex;flex-wrap:wrap}nav button{width:auto;margin:0;padding:8px;font-size:13px}main{padding:15px}header{padding:0 15px}.hero{padding:24px}}@media print{header,aside,.hero,main>section:not(#result),#result button,#status{display:none!important}.shell,main{display:block;padding:0}body{background:white}.card{border:0;padding:0}.list{overflow:visible}}
+</style></head><body>
+<header><img class="logo" alt="Паллада — инженерно-строительная компания"><span class="badge">ДЕМО · СОЧИ</span></header>
+<div class="shell"><aside><small>РАБОЧЕЕ ПРОСТРАНСТВО</small><nav aria-label="Разделы">
+<button data-page="new" class="active">＋ Новое КП</button><button data-page="history">▤ История КП</button><button data-page="catalog">▦ База знаний</button><button data-page="usage">◴ Расход токенов</button><button data-page="api">⚙ API-ключи</button></nav></aside>
+<main><div class="hero"><div class="eyebrow">ПАЛЛАДА · ОТ ПРОЕКТА ДО ОБЪЕКТА</div><h1 id="title">Генератор коммерческих предложений</h1><p id="subtitle">Подбор оборудования из прайсов поставщиков и подготовка КП для клиента.</p></div>
+<div id="status" role="status" hidden></div>
+<section id="new"><div class="cols"><div class="card">
+<div class="row between"><h2>Запрос клиента</h2><button id="example">Вставить пример</button></div>
+<label for="client">Клиент или объект</label><input id="client" placeholder="Например, ресторан «Маяк»">
+<label for="request">Текст запроса</label><textarea id="request" placeholder="Укажите артикулы или названия и количество. Одна позиция на строку."></textarea>
+<label for="requestfile">Приложить спецификацию</label><input class="file" id="requestfile" type="file" accept=".txt,.csv"><p class="muted">TXT или CSV. Например, «VENT-500 × 2» или «VENT-500;2».</p>
+<button class="primary" id="generate">Создать КП →</button></div>
+<div><div class="card"><span class="badge">ФИРМЕННЫЙ ШАБЛОН</span><h2 style="margin-top:14px">Как создаётся КП</h2><div class="step"><b>01</b> Извлекаем позиции из запроса</div><div class="step"><b>02</b> Ищем в прайсах и берём цену из источника</div><div class="step"><b>03</b> Собираем документ для проверки</div></div><div class="card"><strong id="catalogcount"></strong><p class="muted">Прайсы и история хранятся в браузере. В демо работает подбор по артикулу и названию.</p></div></div></div></section>
+<section id="history" hidden><div class="card"><h2>Созданные предложения</h2><div id="historylist" class="list"></div></div></section>
+<section id="catalog" hidden><div class="card"><h2>Прайсы поставщиков</h2><p>Импорт CSV UTF-8. Заголовок <code>Артикул;Наименование;Цена</code>. Цена в рублях за единицу. Повторная загрузка файла с тем же именем заменяет его версию.</p><div class="row"><input type="file" id="pricefile" accept=".csv"><button id="import" class="primary">Импортировать</button></div></div><div class="card"><h2>Загруженные источники</h2><div id="cataloglist" class="list"></div></div></section>
+<section id="usage" hidden><div class="card"><h2>Расход токенов</h2><div class="row"><span class="badge">Вход · 0</span><span class="badge">Выход · 0</span><span class="badge">Списания · 0 ₽</span></div><p class="muted">Демо выполняет подбор локально. В рабочей версии здесь будут фактические входные и выходные токены по каждому КП и стоимость по тарифу модели.</p><div id="usagecount"></div></div></section>
+<section id="api" hidden><div class="card"><h2>Подключение провайдера</h2><p>Демонстрация настройки. Используйте тестовое значение. Поле очищается после проверки.</p><label for="provider">Провайдер</label><select id="provider"><option>OpenAI</option><option>Совместимый API</option></select><label for="key">Тестовый ключ</label><input id="key" type="password" autocomplete="off" placeholder="demo-pallada"><div class="row" style="margin-top:12px"><button class="primary" id="connect">Проверить демо</button><button id="disconnect">Сбросить</button><span id="keyState" class="badge">Не подключено</span></div></div></section>
+<section id="result" hidden><div class="card"><div class="row between"><img class="logo docbrand" alt="Паллада"><button id="print">Печать / сохранить PDF</button></div><div id="quote"></div></div></section>
+</main></div>
+<script>
+const $ = id => document.getElementById(id);
+const logo = 'https://optim.tildacdn.com/tild3565-6264-4761-a537-633234323234/-/resize/548x/-/format/webp/2.png.webp';
+document.querySelectorAll('.logo').forEach(img => img.src = logo);
+const money = value => new Intl.NumberFormat('ru-RU',{style:'currency',currency:'RUB',maximumFractionDigits:2}).format(value);
+const date = value => new Date(value).toLocaleDateString('ru-RU');
+const escapeHtml = value => String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const read = (name, fallback) => {try{return JSON.parse(localStorage.getItem(name)) ?? fallback}catch{return fallback}};
+const demo = {name:'Учебный прайс · вентиляция',time:null,rows:[
+ {sku:'VENT-500',name:'Приточная установка 500 м³/ч',price:72800},
+ {sku:'FILT-G4',name:'Фильтр кассетный G4',price:1450},
+ {sku:'DUCT-160',name:'Воздуховод Ø160 мм, 1 м',price:920}
+]};
+let catalogs = read('pallada-prices',[demo]);
+let history = read('pallada-quotes',[]);
+const notify = message => {$('status').hidden=!message;$('status').textContent=message};
+const nav = {new:['Генератор коммерческих предложений','Подбор оборудования из прайсов поставщиков и подготовка КП для клиента.'],history:['История КП','Откройте ранее созданный документ или сохраните его в PDF.'],catalog:['База знаний','Загрузка и обновление прайсов поставщиков.'],usage:['Расход токенов','Учёт использования модели и затрат на генерацию.'],api:['API-ключи','Настройка собственного доступа к провайдеру.'],result:['Предпросмотр КП','Проверьте подбор, суммы и позиции, требующие уточнения.']};
+function show(page){
+  document.querySelectorAll('main > section').forEach(section=>section.hidden=section.id!==page);
+  document.querySelectorAll('nav button').forEach(button=>{
+    const active=button.dataset.page===(page==='result'?'history':page);
+    button.classList.toggle('active',active);
+    if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');
+  });
+  [$('title').textContent,$('subtitle').textContent]=nav[page];
+  notify('');
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('nav button').forEach(button=>button.onclick=()=>show(button.dataset.page));
+function table(headers, rows){
+  return '<table><thead><tr>'+headers.map(h=>'<th scope="col">'+h+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+row.map(c=>'<td>'+c+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+}
+function refresh(){
+  const count=catalogs.reduce((n,c)=>n+c.rows.length,0);
+  $('catalogcount').textContent='Позиций в базе · '+count.toLocaleString('ru-RU');
+  $('cataloglist').innerHTML=table(['Прайс','Позиций','Обновлён'],catalogs.map(c=>[escapeHtml(c.name),c.rows.length,c.time?date(c.time):'Демо']));
+  $('historylist').innerHTML=history.length?table(['Номер','Объект','Дата','Сумма','Документ'],history.map((q,i)=>[q.number,escapeHtml(q.client),date(q.time),money(q.total),'<button data-quote="'+i+'">Открыть</button>'])):'Пока нет сохранённых КП.';
+  $('usagecount').textContent='Локальных генераций · '+history.length;
+}
+$('historylist').onclick=e=>{const button=e.target.closest('[data-quote]');if(button)openQuote(history[Number(button.dataset.quote)])};
+function csv(text, separator){
+  const rows=[];let row=[],field='',quoted=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(c==='"'){
+      if(quoted && text[i+1]==='"'){field+='"';i++}else quoted=!quoted;
+    }else if(!quoted && c===separator){row.push(field.trim());field=''}
+    else if(!quoted && c==='\n'){row.push(field.trim());if(row.some(Boolean))rows.push(row);row=[];field=''}
+    else field+=c;
+  }
+  if(quoted)throw Error('Проверьте кавычки в CSV.');
+  row.push(field.trim());if(row.some(Boolean))rows.push(row);
+  return rows;
+}
+$('import').onclick=async()=>{
+  try{
+    const file=$('pricefile').files[0];
+    if(!file)throw Error('Выберите CSV с прайсом.');
+    const content=(await file.text()).replace(/^\uFEFF/,'');
+    const records=csv(content,content.split('\n')[0].includes(';')?';':',');
+    const header=records.shift()?.map(v=>v.toLowerCase());
+    const indexes=['артикул','наименование','цена'].map(v=>header?.indexOf(v)??-1);
+    if(indexes.includes(-1)||!records.length)throw Error('Нужны колонки Артикул, Наименование, Цена и хотя бы одна позиция.');
+    const seen=new Set();
+    const rows=records.map((row,i)=>{
+      const [sku,name,raw]=indexes.map(index=>row[index]);
+      const price=Number(raw?.replace(/\s/g,'').replace(',','.'));
+      if(!sku||!name||!raw||!Number.isFinite(price)||price<0||seen.has(sku.toLowerCase()))throw Error('Проверьте строку '+(i+2)+': артикул, название и цена обязательны, артикулы должны быть уникальны.');
+      seen.add(sku.toLowerCase());
+      return {sku,name,price};
+    });
+    const next=[{name:file.name,time:Date.now(),rows},...catalogs.filter(c=>c.name!==file.name)];
+    localStorage.setItem('pallada-prices',JSON.stringify(next));
+    catalogs=next;refresh();notify('Загружено позиций: '+rows.length);
+  }catch(error){notify(error.message)}
+};
+$('example').onclick=()=>{
+  $('client').value='Ресторан «Маяк», Сочи';
+  $('request').value='VENT-500 × 2\nFILT-G4 × 4\nDUCT-160 × 12';
+  $('requestfile').value='';
+};
+function openQuote(q){
+  show('result');
+  $('quote').innerHTML='<p class="muted">'+q.number+' · '+date(q.time)+'</p><h2>Коммерческое предложение</h2><p>Объект: <strong>'+escapeHtml(q.client)+'</strong></p><p class="notice">Демонстрационный черновик. Стоимость поставки и условия уточняются после проверки.</p><div class="list">'+table(['Позиция / артикул','Источник цены','Кол-во','Цена за ед.','Сумма'],q.rows.map(r=>[escapeHtml(r.name)+'<br><small>'+escapeHtml(r.sku)+'</small>',escapeHtml(r.source),r.qty,money(r.price),money(r.sum)]))+'</div><p class="total">Итого по найденным позициям · '+money(q.total)+'</p>'+(q.missing.length?'<p class="notice"><strong>Требуют уточнения:</strong><br>'+q.missing.map(escapeHtml).join('<br>')+'</p>':'')+'<p class="muted">«Паллада» · Сочи, ул. Донская, 9-а · +7 (862) 255-99-55 · bass@pallada-n.ru</p>';
+}
+$('generate').onclick=async()=>{
+  try{
+    const file=$('requestfile').files[0];
+    if(file&&!/\.(txt|csv)$/i.test(file.name))throw Error('Выберите TXT или CSV.');
+    const lines=($('request').value+'\n'+(file?await file.text():'')).split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+    if(!lines.length)throw Error('Добавьте текст запроса или приложите файл.');
+    const products=catalogs.flatMap(c=>c.rows.map(r=>({...r,source:c.name})));
+    const rows=[],missing=[];
+    for(const line of lines){
+      const quantity=line.match(/\s*[×xх;]\s*(\d+(?:[.,]\d+)?)\s*(?:шт\.?|м)?$/i);
+      const qty=quantity?Number(quantity[1].replace(',','.')):1;
+      const query=(quantity?line.slice(0,quantity.index):line).trim().toLowerCase();
+      const exact=products.filter(p=>p.sku.toLowerCase()===query);
+      const names=products.filter(p=>query && p.name.toLowerCase().includes(query));
+      const product=exact[0]??(names.length===1?names[0]:null);
+      if(!product||!Number.isFinite(qty)||qty<=0){missing.push(line);continue}
+      rows.push({...product,qty,sum:Math.round(product.price*qty*100)/100});
+    }
+    const q={number:'КП-'+String(history.length+1).padStart(4,'0'),client:$('client').value.trim()||'Без названия',time:Date.now(),rows,missing,total:rows.reduce((sum,r)=>sum+r.sum,0)};
+    const next=[q,...history];
+    localStorage.setItem('pallada-quotes',JSON.stringify(next));
+    history=next;refresh();openQuote(q);
+  }catch(error){notify(error.message)}
+};
+$('connect').onclick=()=>{
+  const valid=$('key').value==='demo-pallada';
+  $('key').value='';
+  $('keyState').textContent=valid?'Демо проверено · '+$('provider').value:'Не подключено';
+  notify(valid?'Демонстрационная проверка прошла.':'Введите тестовое значение demo-pallada.');
+};
+$('disconnect').onclick=()=>{$('key').value='';$('keyState').textContent='Не подключено';notify('Демо-настройка сброшена.')};
+$('print').onclick=()=>window.print();
+refresh();
+</script>
+</body></html>
