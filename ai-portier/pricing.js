@@ -23,7 +23,7 @@ function renderPricing() {
   const roomCount = pricing.querySelector('[name=rooms]')?.value ?? '30';
   const format = pricing.querySelector('[name=format]')?.value ?? 'voice';
   pricing.innerHTML = `<section class="section price-section" aria-labelledby="price-title">
-    <h2 id="price-title">${t[0]}</h2>
+    <div class="pricing-brand">НЭЙРУ <span>NEURU · AI FOR HOTELS</span></div><p class="pricing-kicker">${t[0]}</p><h2 id="price-title">${t[0]}</h2>
     <div class="price-grid">
       <article><h3><span aria-hidden="true">☎</span>${t[1]}</h3>
         <div class="price-tiers">
@@ -42,10 +42,10 @@ function renderPricing() {
     </div>
   </section>
   <section class="section price-section" aria-labelledby="quote-title">
-    <h2 id="quote-title">${t[7]}</h2>
+    <div class="pricing-brand">НЭЙРУ <span>NEURU · AI FOR HOTELS</span></div><p class="pricing-kicker">${t[7]}</p><h2 id="quote-title">${t[7]}</h2>
     <form class="quote-form">
-      <label>${t[8]}<input name="rooms" type="number" min="1" max="999999" step="1" required></label>
-      <label>${t[9]}<select name="format"><option value="voice">${t[10]}</option><option value="text">${t[11]}</option><option value="both">${t[12]}</option></select></label>
+      <label><span class="quote-icon" aria-hidden="true">▤</span><b>${t[8]}</b><input name="rooms" type="number" min="1" max="999999" step="1" required></label>
+      <label><span class="quote-icon" aria-hidden="true">☏</span><b>${t[9]}</b><select name="format"><option value="voice">${t[10]}</option><option value="text">${t[11]}</option><option value="both">${t[12]}</option></select></label>
       <button class="button">${t[13]}</button>
     </form>
     <div class="quote-result" aria-live="polite"></div>
@@ -88,7 +88,7 @@ function showQuote() {
   const amount = quote.setup === null ? t[6] : quote.discounted
     ? `<del>${rub(quote.setup)}</del> <strong>${rub(quote.promo)}</strong>`
     : `<strong>${rub(quote.setup)}</strong>`;
-  result.innerHTML = `${quote.discounted ? `<p class="quote-promo">${t[14]}</p>` : ''}<dl><div><dt>${t[3]}</dt><dd>${amount}</dd></div><div><dt>${t[4]}</dt><dd><strong>${rub(quote.monthly)}</strong></dd></div></dl>`;
+  result.innerHTML = `${quote.discounted ? `<p class="quote-promo"><span class="quote-icon" aria-hidden="true">%</span>${t[14]}</p>` : ''}<dl><div><dt><span class="quote-icon" aria-hidden="true">◇</span>${t[3]}</dt><dd>${amount}</dd></div><div><dt><span class="quote-icon" aria-hidden="true">▦</span>${t[4]}</dt><dd><strong>${rub(quote.monthly)}</strong></dd></div></dl>`;
 }
 document.getElementById('language').addEventListener('change', renderPricing);
 renderPricing();
