@@ -647,3 +647,30 @@ html[lang^=zh] .hero h1{font-size:clamp(42px,5.1vw,73px);letter-spacing:-.05em}h
   35% { transform: scaleY(.22); }
   70% { transform: scaleY(.95); }
 }
+
+.price-section {
+  background: radial-gradient(ellipse at top right, #cfc5fc, transparent 65%), #f0ebff;
+}
+.price-section h2 { margin-bottom: 24px; }
+.price-grid, .quote-form, .quote-result dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.price-grid article, .quote-form, .quote-result dl, .quote-promo {
+  padding: clamp(16px, 3vw, 32px);
+  border: 1px solid white;
+  border-radius: 20px;
+  background: #ffffffa8;
+}
+.price-grid h3 { color: #4821b7; }
+.price-section dl div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 6px 0; }
+.price-section dd { margin: 0; color: #4821b7; font-weight: 750; }
+.quote-form { grid-template-columns: repeat(2, minmax(0, 1fr)) auto; align-items: end; }
+.quote-form label { display: grid; gap: 8px; }
+.quote-form input, .quote-form select { min-width: 0; padding: 12px; background: #fff; border: 1px solid #baacf2; border-radius: 8px; }
+.quote-promo { color: #4318a1; font-weight: 800; }
+.quote-result del { color: #69607e; margin-right: 6px; }
+@media (max-width: 680px) {
+  .price-grid, .quote-form, .quote-result dl { grid-template-columns: 1fr; }
+}
