@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="NEURU 俄语 AI 礼宾，帮助中国酒店全天候接待俄罗斯宾客并收集预订申请。"><title>NEURU НЭЙРУ · 面向中国酒店的俄语 AI 礼宾</title><link rel="stylesheet" href="style.css"></head><body>
+<header><a class="logo" href="#">НЭЙРУ<span>NEURU · AI FOR HOTELS</span></a><nav><a href="#demo" data-t="navDemo"></a><a href="#faq" data-t="navFaq"></a></nav><select id="language" aria-label="Language"><option value="zh" selected>简体中文</option><option value="ru">Русский</option><option value="en">English</option></select><a class="button small" href="#brief" data-t="briefBtn"></a></header>
+<main><section class="hero"><div class="hero-copy"><div class="eyebrow" data-t="eyebrow"></div><h1 data-t="hero"></h1><p class="lead" data-t="intro"></p><div class="actions hero-actions"><a class="button hero-demo" href="#demo" data-t="try"></a><a class="button hero-call" href="tel:+74950670211" data-t="call"></a><a class="button secondary" href="#loss-calculator" data-t="heroEstimate"></a></div><div class="hero-note"><span class="dot"></span><span data-t="heroNote"></span></div></div><div class="hero-art"><div class="orbit o1"></div><div class="orbit o2"></div><div class="night">22:48 <span data-t="nightLabel"></span></div><img class="demo-phone" src="neuru-phone.webp" alt="" width="388" height="632"><div class="floating"><span class="dot"></span><span data-t="artLabel"></span><div class="wave" aria-hidden="true"><span style="--level:0.3;--phase:0ms"></span><span style="--level:0.7;--phase:-87ms"></span><span style="--level:0.5;--phase:-174ms"></span><span style="--level:1.0;--phase:-261ms"></span><span style="--level:0.4;--phase:-348ms"></span><span style="--level:0.3;--phase:-435ms"></span><span style="--level:0.9;--phase:-522ms"></span><span style="--level:0.7;--phase:-609ms"></span><span style="--level:0.5;--phase:-696ms"></span><span style="--level:1.0;--phase:-783ms"></span><span style="--level:0.3;--phase:-870ms"></span><span style="--level:0.7;--phase:-957ms"></span><span style="--level:0.5;--phase:-1044ms"></span><span style="--level:0.9;--phase:-1131ms"></span><span style="--level:0.3;--phase:-1218ms"></span></div></div><div class="art-foot">NEURU AI CONCIERGE<span>24/7 · RU</span></div></div></section>
+<section class="strip benefits">
+  <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2c0 9 7 16 16 16a2 2 0 0 0 2-2v-3l-5-2-2 2a13 13 0 0 1-6-6l2-2z M15 3a7 7 0 0 1 6 6 M15 7a3 3 0 0 1 2 2"/></svg><strong data-t="s1"></strong></div>
+  <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v15H4z M4 10h16 M8 3v5 M16 3v5 M8 14h2 M14 14h2 M8 17h2"/></svg><strong data-t="s2"></strong></div>
+  <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18 M5 16a7 7 0 0 1 14 0z M12 9V6 M10 6h4"/></svg><strong data-t="s3"></strong></div>
+  <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18 M5 17v-3 M10 17v-5 M15 17v-7 M20 17v-9 M4 10l5-4 4 2 7-5 M16 3h4v4"/></svg><strong data-t="s4"></strong></div>
+</section>
+<section class="section missed" aria-labelledby="missed-title">
+  <figure class="missed-visual">
+    <img src="missed-call.webp" alt="" loading="lazy">
+  </figure>
+  <div class="missed-copy">
+    <div class="eyebrow" data-t="missedEye"></div>
+    <h2 id="missed-title"><span data-t="missedTitle"></span> <em data-t="missedAccent"></em></h2>
+    <div class="missed-average"><span id="missed-rate-label" data-t="missedAverage"></span><input id="missedRate" type="number" min="0" max="999999999" value="18000" aria-labelledby="missed-rate-label"> ₽</div>
+    <p data-t="missedScenario"></p>
+    <div class="missed-total">
+      <div><strong id="missedMonthly"></strong><span data-t="missedMonthLabel"></span></div>
+      <div><strong id="missedAnnual"></strong><span data-t="missedYearLabel"></span></div>
+    </div>
+    <p class="missed-assumption" data-t="missedAssumption"></p>
+  </div>
+  <div class="missed-callouts">
+    <div class="missed-callout-pair">
+      <div class="missed-callout">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+        <p data-t="missedVisibility"></p>
+      </div>
+      <div class="missed-callout">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M12 21H3v-3a5 5 0 0 1 5-5h2m6 3 5 5m0-5-5 5"/></svg>
+        <p data-t="missedGuest"></p>
+      </div>
+    </div>
+    <div class="missed-callout missed-callout-alert">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v9m0 4h.01"/></svg>
+      <p data-t="missedCaption"></p>
+    </div>
+  </div>
+</section>
+<section class="section loss-calculator" id="loss-calculator" aria-labelledby="loss-title">
+  <div class="loss-head">
+    <div class="loss-copy">
+      <div class="eyebrow" data-t="lossEye"></div>
+      <h2 id="loss-title" data-t="lossTitle"></h2>
+      <output id="lossResult" for="lossRate lossCurrency lossCalls" aria-live="polite"></output>
+      <p class="loss-period" data-t="lossPeriod"></p>
+    </div>
+    <div class="loss-illustration" aria-hidden="true"></div>
+  </div>
+  <div class="loss-formula">
+    <div class="loss-step"><svg class="loss-art loss-art-phone" viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="42" r="39" fill="#ffe9f1"/><rect x="39" y="10" width="42" height="64" rx="10" fill="#fff" stroke="#9f2857" stroke-width="3"/><path d="M53 18h14M56 66h8m-14-29c3 8 8 13 16 16l5-5-6-4-3 2-6-6 2-3-4-6z" fill="none" stroke="#9f2857" stroke-width="2.5" stroke-linecap="round"/><circle cx="82" cy="24" r="12" fill="#aa2859"/><path d="m78 20 8 8m0-8-8 8" stroke="#fff" stroke-width="2.5"/></svg><input id="lossCalls" type="number" min="0" max="999" step="1" value="1" aria-labelledby="loss-call-label"><span id="loss-call-label" data-t="lossCallsLabel"></span></div>
+    <span class="loss-operator" aria-hidden="true">→</span>
+    <div class="loss-step"><svg class="loss-art loss-art-calendar" viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="42" r="39" fill="#e8eeff"/><rect x="29" y="20" width="62" height="53" rx="9" fill="#fff" stroke="#3a48cd" stroke-width="3"/><path d="M29 35h62M44 13v15m32-15v15" stroke="#3a48cd" stroke-width="3" stroke-linecap="round"/><g fill="#6952e8"><circle cx="44" cy="46" r="3"/><circle cx="60" cy="46" r="3"/><circle cx="76" cy="46" r="3"/><circle cx="44" cy="59" r="3"/><circle cx="60" cy="59" r="3"/><circle cx="76" cy="59" r="3"/></g></svg><strong id="lossMonthlyCount"></strong><span data-t="lossDailyLabel"></span></div>
+    <span class="loss-operator" aria-hidden="true">×</span>
+    <div class="loss-step loss-price"><svg class="loss-art loss-art-tag" viewBox="0 0 120 84" aria-hidden="true"><circle cx="60" cy="42" r="39" fill="#ebe2ff"/><path d="M27 54V29l18-13h31l17 17-34 34H40z" fill="#fff" stroke="#5736d4" stroke-width="3" stroke-linejoin="round"/><circle cx="71" cy="31" r="4" fill="#5736d4"/><path d="M39 48V36m0 8h22m0-8v12m-22 6v-6h22v6" fill="none" stroke="#5736d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="loss-inputs">
+        <input id="lossRate" autocomplete="off" type="text" inputmode="decimal" maxlength="24" value="15000" aria-describedby="lossAssumption lossError">
+        <select id="lossCurrency" aria-label="Currency">
+          <option value="RUB">₽ RUB</option><option value="CNY">¥ CNY</option><option value="USD">$ USD</option>
+        </select>
+      </div>
+      <label for="lossRate" data-t="lossRateLabel"></label>
+      <small id="lossError" role="status" hidden data-t="lossError"></small>
+    </div>
+  </div>
+  <p id="lossAssumption" data-t="lossAssumption"></p>
+</section>
+<section class="section scenario scenario-time" id="time-difference" aria-labelledby="time-title">
+  <div class="eyebrow" data-t="timeEye"></div>
+  <div class="scenario-clock"><span>21:00 <small data-t="timeMoscow"></small></span><span aria-hidden="true">→</span><span>02:00 <small data-t="timeChina"></small></span></div>
+  <h2 id="time-title" data-t="timeTitle"></h2>
+  <div class="scenario-grid">
+    <article class="scenario-card scenario-lost">
+      <img src="reception.webp" alt="" loading="lazy">
+      <div><h3 data-t="timeBefore"></h3><p data-t="timeProblem"></p></div>
+    </article>
+    <article class="scenario-card scenario-win">
+      <img src="concierge-call.webp" alt="" loading="lazy">
+      <div><h3 data-t="timeAfter"></h3><ul class="scenario-benefits"><li data-t="timeBenefit1"></li><li data-t="timeBenefit2"></li><li data-t="timeBenefit3"></li><li data-t="timeBenefit4"></li></ul></div>
+    </article>
+  </div>
+  <p class="scenario-outcome" data-t="timeOutcome"></p>
+</section>
+<section class="section scenario scenario-language" id="language-barrier" aria-labelledby="barrier-title">
+  <div class="barrier-head">
+    <div class="barrier-art" aria-hidden="true"></div>
+    <div>
+      <div class="scenario-tag" data-t="barrierTag"></div>
+      <h2 id="barrier-title"><span data-t="barrierTitle"></span> <em data-t="barrierAccent"></em></h2>
+    </div>
+  </div>
+  <div class="scenario-grid">
+    <article class="scenario-card scenario-current">
+      <div><h3><span aria-hidden="true">◌</span> <span data-t="barrierBefore"></span></h3><p data-t="barrierProblem"></p></div>
+    </article>
+    <article class="scenario-card scenario-win">
+      <div><h3><span aria-hidden="true">✦</span> <span data-t="timeAfter"></span></h3><p data-t="barrierSolution"></p></div>
+    </article>
+  </div>
+  <p class="scenario-outcome"><span aria-hidden="true">✓</span> <span data-t="barrierOutcome"></span></p>
+</section>
+<section id="demo" class="section walkthrough" aria-labelledby="walk-title"><div id="walkthrough"></div></section><section id="brief" class="section brief"><div><div class="eyebrow brief-brand">НЭЙРУ · NEURU</div><h2 data-t="briefTitle"></h2><p data-t="briefIntro"></p><a class="brief-email" href="mailto:sales@neuru.ru">sales@neuru.ru ↗</a><div class="brief-checklist" id="checklist"></div><div class="brief-checklist" id="briefFormats"></div></div><form id="briefForm"><div class="field-grid"><label><span data-t="name"></span><input name="name" required maxlength="100" autocomplete="name"></label><label><span data-t="position"></span><input name="position" required maxlength="100" autocomplete="organization-title"></label><label><span data-t="phone"></span><input name="phone" type="tel" required minlength="7" maxlength="30" autocomplete="tel"></label><label><span data-t="hotel"></span><input name="hotel" required maxlength="150" autocomplete="organization"></label></div><div id="extended"><label><span data-t="website"></span><input name="website" type="url" placeholder="https://"></label><label><span data-t="tasks"></span><textarea name="tasks" rows="3" maxlength="4000"></textarea></label><label><span data-t="systems"></span><textarea name="systems" rows="2" maxlength="2000"></textarea></label><label><span data-t="materials"></span><textarea name="materials" rows="3" maxlength="4000"></textarea></label><label class="consent"><input type="checkbox" name="consent" required><span data-t="consent"></span></label><div class="actions"><button class="button" type="submit" data-t="send"></button><button class="button" type="button" id="download" data-t="download"></button></div><p class="muted" data-t="sendNote"></p></div><p id="formStatus" role="status"></p></form></section>
+
+
+<section class="section" id="faq"><div class="section-head"><div><div class="eyebrow">FAQ</div><h2 data-t="faqTitle"></h2></div><div class="faq-art" aria-hidden="true"><span>?</span><span>•••</span></div></div><div id="faqList"></div></section>
+
+</main><footer><a class="logo" href="#">НЭЙРУ<span>AI FOR HOSPITALITY</span></a><span data-t="footer"></span><a href="https://neuru.ru" target="_blank" rel="noopener">neuru.ru ↗</a></footer><script src="app.js"></script><script src="walkthrough.js"></script></body></html>
