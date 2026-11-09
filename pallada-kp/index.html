@@ -3,7 +3,7 @@
 </style></head><body>
 <header><img class="logo" alt="Паллада — инженерно-строительная компания"><span class="badge">ДЕМО · СОЧИ</span></header>
 <div class="shell"><aside><small>РАБОЧЕЕ ПРОСТРАНСТВО</small><nav aria-label="Разделы">
-<button data-page="new" class="active">＋ Новое КП</button><button data-page="history">▤ История КП</button><button data-page="catalog">▦ База знаний</button><button data-page="usage">◴ Расход токенов</button><button data-page="api">⚙ API-ключи</button></nav></aside>
+<button data-page="new" class="active">＋ Новое КП</button><button data-page="history">▤ История КП</button><button data-page="catalog">▦ База знаний</button><button data-page="usage">◴ Расход токенов</button><button data-page="api">⚙ API-ключи</button><button data-page="settings">⚙ Настройки</button></nav></aside>
 <main><div class="hero"><div class="eyebrow">ПАЛЛАДА · ОТ ПРОЕКТА ДО ОБЪЕКТА</div><h1 id="title">Генератор коммерческих предложений</h1><p id="subtitle">Подбор оборудования из прайсов поставщиков и подготовка КП для клиента.</p></div>
 <div id="status" role="status" hidden></div>
 <section id="new"><div class="cols"><div class="card">
@@ -17,7 +17,7 @@
 <section id="catalog" hidden><div class="card"><h2>Прайсы поставщиков</h2><p>Импорт CSV UTF-8. Заголовок <code>Артикул;Наименование;Цена</code>. Цена в рублях за единицу. Повторная загрузка файла с тем же именем заменяет его версию.</p><div class="row"><input type="file" id="pricefile" accept=".csv"><button id="import" class="primary">Импортировать</button></div></div><div class="card"><h2>Загруженные источники</h2><div id="cataloglist" class="list"></div></div></section>
 <section id="usage" hidden><div class="card"><h2>Расход токенов</h2><div class="row"><span class="badge">Вход · 0</span><span class="badge">Выход · 0</span><span class="badge">Списания · 0 ₽</span></div><p class="muted">Демо выполняет подбор локально. В рабочей версии здесь будут фактические входные и выходные токены по каждому КП и стоимость по тарифу модели.</p><div id="usagecount"></div></div></section>
 <section id="api" hidden><div class="card"><h2>Подключение провайдера</h2><p>Демонстрация настройки. Используйте тестовое значение. Поле очищается после проверки.</p><label for="provider">Провайдер</label><select id="provider"><option>OpenAI</option><option>Совместимый API</option></select><label for="key">Тестовый ключ</label><input id="key" type="password" autocomplete="off" placeholder="demo-pallada"><div class="row" style="margin-top:12px"><button class="primary" id="connect">Проверить демо</button><button id="disconnect">Сбросить</button><span id="keyState" class="badge">Не подключено</span></div></div></section>
-<section id="result" hidden><div class="card"><div class="row between"><img class="logo docbrand" alt="Паллада"><button id="print">Печать / сохранить PDF</button></div><div id="quote"></div></div></section>
+<section id="settings" hidden><div class="card"><h2>Настройки коммерческого предложения</h2><form id="settingsform"><label for="factor">Повышающий коэффициент</label><input id="factor" type="number" min="1" step="0.01" required><p class="muted">Цена поставщика × коэффициент, затем применяется скидка.</p><label for="discount">Скидка, %</label><input id="discount" type="number" min="0" max="100" step="0.01" required><label for="terms">Особые условия</label><textarea id="terms" placeholder="Сроки поставки, оплата, доставка, срок действия КП"></textarea><label for="writing">Правила написания</label><textarea id="writing" placeholder="Тон, обращения, требования к формулировкам"></textarea><p class="muted">В демо правила сохраняются как инструкция для автора КП. Автоматическое применение к тексту будет доступно при подключении ИИ.</p><button class="primary" type="submit">Сохранить настройки</button></form></div></section><section id="result" hidden><div class="card"><div class="row between"><img class="logo docbrand" alt="Паллада"><button id="print">Печать / сохранить PDF</button></div><div id="quote"></div></div></section>
 </main></div>
 <script>
 const $ = id => document.getElementById(id);
@@ -34,8 +34,19 @@ const demo = {name:'Учебный прайс · вентиляция',time:null
 ]};
 let catalogs = read('pallada-prices',[demo]);
 let history = read('pallada-quotes',[]);
+let settings = read('pallada-settings',{factor:1,discount:0,terms:'',writing:''});
+$('factor').value=settings.factor;
+$('discount').value=settings.discount;
+$('terms').value=settings.terms;
+$('writing').value=settings.writing;
+$('settingsform').onsubmit=e=>{
+ e.preventDefault();
+ const next={factor:Number($('factor').value),discount:Number($('discount').value),terms:$('terms').value.trim(),writing:$('writing').value.trim()};
+ if(!Number.isFinite(next.factor)||next.factor<1||!Number.isFinite(next.discount)||next.discount<0||next.discount>100){notify('Проверьте коэффициент и скидку.');return}
+ try{localStorage.setItem('pallada-settings',JSON.stringify(next));settings=next;notify('Настройки сохранены для новых КП.')}catch{notify('Не удалось сохранить настройки в браузере.')}
+};
 const notify = message => {$('status').hidden=!message;$('status').textContent=message};
-const nav = {new:['Генератор коммерческих предложений','Подбор оборудования из прайсов поставщиков и подготовка КП для клиента.'],history:['История КП','Откройте ранее созданный документ или сохраните его в PDF.'],catalog:['База знаний','Загрузка и обновление прайсов поставщиков.'],usage:['Расход токенов','Учёт использования модели и затрат на генерацию.'],api:['API-ключи','Настройка собственного доступа к провайдеру.'],result:['Предпросмотр КП','Проверьте подбор, суммы и позиции, требующие уточнения.']};
+const nav = {settings:['Настройки','Правила расчёта и оформления коммерческих предложений.'],new:['Генератор коммерческих предложений','Подбор оборудования из прайсов поставщиков и подготовка КП для клиента.'],history:['История КП','Откройте ранее созданный документ или сохраните его в PDF.'],catalog:['База знаний','Загрузка и обновление прайсов поставщиков.'],usage:['Расход токенов','Учёт использования модели и затрат на генерацию.'],api:['API-ключи','Настройка собственного доступа к провайдеру.'],result:['Предпросмотр КП','Проверьте подбор, суммы и позиции, требующие уточнения.']};
 function show(page){
   document.querySelectorAll('main > section').forEach(section=>section.hidden=section.id!==page);
   document.querySelectorAll('nav button').forEach(button=>{
@@ -102,7 +113,7 @@ $('example').onclick=()=>{
 };
 function openQuote(q){
   show('result');
-  $('quote').innerHTML='<p class="muted">'+q.number+' · '+date(q.time)+'</p><h2>Коммерческое предложение</h2><p>Объект: <strong>'+escapeHtml(q.client)+'</strong></p><p class="notice">Демонстрационный черновик. Стоимость поставки и условия уточняются после проверки.</p><div class="list">'+table(['Позиция / артикул','Источник цены','Кол-во','Цена за ед.','Сумма'],q.rows.map(r=>[escapeHtml(r.name)+'<br><small>'+escapeHtml(r.sku)+'</small>',escapeHtml(r.source),r.qty,money(r.price),money(r.sum)]))+'</div><p class="total">Итого по найденным позициям · '+money(q.total)+'</p>'+(q.missing.length?'<p class="notice"><strong>Требуют уточнения:</strong><br>'+q.missing.map(escapeHtml).join('<br>')+'</p>':'')+'<p class="muted">«Паллада» · Сочи, ул. Донская, 9-а · +7 (862) 255-99-55 · bass@pallada-n.ru</p>';
+  $('quote').innerHTML='<p class="muted">'+q.number+' · '+date(q.time)+'</p><h2>Коммерческое предложение</h2><p>Объект: <strong>'+escapeHtml(q.client)+'</strong></p><p class="notice">Демонстрационный черновик. Стоимость поставки и условия уточняются после проверки.</p><div class="list">'+table(['Позиция / артикул','Источник цены','Кол-во','Цена за ед.','Сумма'],q.rows.map(r=>[escapeHtml(r.name)+'<br><small>'+escapeHtml(r.sku)+'</small>',escapeHtml(r.source),r.qty,money(r.price),money(r.sum)]))+'</div><p class="total">Итого по найденным позициям · '+money(q.total)+'</p>'+(q.settings?'<p class="muted">Коэффициент '+q.settings.factor+' · Скидка '+q.settings.discount+'%</p>'+(q.settings.terms?'<h2>Особые условия</h2><p style="white-space:pre-wrap">'+escapeHtml(q.settings.terms)+'</p>':''):'')+(q.missing.length?'<p class="notice"><strong>Требуют уточнения:</strong><br>'+q.missing.map(escapeHtml).join('<br>')+'</p>':'')+'<p class="muted">«Паллада» · Сочи, ул. Донская, 9-а · +7 (862) 255-99-55 · bass@pallada-n.ru</p>';
 }
 $('generate').onclick=async()=>{
   try{
@@ -120,9 +131,11 @@ $('generate').onclick=async()=>{
       const names=products.filter(p=>query && p.name.toLowerCase().includes(query));
       const product=exact[0]??(names.length===1?names[0]:null);
       if(!product||!Number.isFinite(qty)||qty<=0){missing.push(line);continue}
-      rows.push({...product,qty,sum:Math.round(product.price*qty*100)/100});
+      const price=Math.round(product.price*settings.factor*(1-settings.discount/100)*100)/100;
+      if(!Number.isFinite(price)||!Number.isFinite(price*qty))throw Error('Слишком большое значение суммы.');
+      rows.push({...product,basePrice:product.price,price,qty,sum:Math.round(price*qty*100)/100});
     }
-    const q={number:'КП-'+String(history.length+1).padStart(4,'0'),client:$('client').value.trim()||'Без названия',time:Date.now(),rows,missing,total:rows.reduce((sum,r)=>sum+r.sum,0)};
+    const q={number:'КП-'+String(history.length+1).padStart(4,'0'),client:$('client').value.trim()||'Без названия',time:Date.now(),settings:{...settings},rows,missing,total:rows.reduce((sum,r)=>sum+r.sum,0)};
     const next=[q,...history];
     localStorage.setItem('pallada-quotes',JSON.stringify(next));
     history=next;refresh();openQuote(q);
